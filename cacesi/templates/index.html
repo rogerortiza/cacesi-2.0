@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +8,8 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static "css/materialize.css" %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static "css/style.css" %}" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
   <nav class="black" role="navigation">
@@ -33,7 +34,7 @@
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="banner3.JPG" width="1300" alt="cacesi"></div>
+    <div class="parallax"><img src="{% static "images/home/banner3.JPG" %}" width="1300" alt="cacesi"></div>
   </div>
 
 
@@ -82,7 +83,7 @@
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="banner2.JPG" width="1300" alt="Unsplashed background img 2"></div>
+    <div class="parallax"><img src="{% static "images/home/banner2.JPG" %}" width="1300" alt="Unsplashed background img 2"></div>
   </div>
 
   <div class="container">
@@ -130,7 +131,7 @@
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="banner1.JPG" width="1300" alt="Unsplashed background img 3"></div>
+    <div class="parallax"><img src="{% static "images/home/banner1.JPG" %}" width="1300" alt="Unsplashed background img 3"></div>
   </div>
 
   <div class="container">
@@ -141,13 +142,13 @@
          
           <div class="carousel">
            <h4>Empresas que confian en CACESI</h4>
-            <a class="carousel-item" href="#two!"><img class="z-depth-5 circle" src="images/logosClientes/topia.jpg"><div class="card-panel hoverable">Grupo Topia</div></a>
-            <a class="carousel-item" href="#three!"><img class="z-depth-5 circle" src="images/logosClientes/malborohouse.jpg"><div class="card-panel hoverable">Malboro House</div></a>
-            <a class="carousel-item" href="#four!"><img class="z-depth-5 circle" src="images/logosClientes/colegio.jpg"><div class="card-panel hoverable">Colegio La Paz</div></a>
-            <a class="carousel-item" href="#five!"><img class="z-depth-5 circle" src="images/logosClientes/tarahumar.jpg"><div class="card-panel hoverable">Grupo Tarahumar</div></a>
-            <a class="carousel-item" href="#one!"><img class="z-depth-5 circle" src="images/logosClientes/proteccion.jpg"><div class="card-panel hoverable">Proteccion Civil Dgo</div></a>
-            <a class="carousel-item" href="#one!"><img class="z-depth-5 circle" src="images/logosClientes/cecati.jpg" height="200"><div class="card-panel hoverable">Cecati</div></a>
-            <a class="carousel-item" href="#one!"><img class="z-depth-5 circle" src="images/logosClientes/mundofeliz.jpg"  height="200" width="200"><div class="card-panel hoverable">Mundo Feliz</div></a>
+            <a class="carousel-item" href="#two!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/topia.jpg" %}"><div class="card-panel hoverable">Grupo Topia</div></a>
+            <a class="carousel-item" href="#three!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/malborohouse.jpg" %}"><div class="card-panel hoverable">Malboro House</div></a>
+            <a class="carousel-item" href="#four!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/colegio.jpg" %}"><div class="card-panel hoverable">Colegio La Paz</div></a>
+            <a class="carousel-item" href="#five!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/tarahumar.jpg" %}"><div class="card-panel hoverable">Grupo Tarahumar</div></a>
+            <a class="carousel-item" href="#one!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/proteccion.jpg" %}"><div class="card-panel hoverable">Proteccion Civil Dgo</div></a>
+            <a class="carousel-item" href="#one!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/cecati.jpg" %}" height="200"><div class="card-panel hoverable">Cecati</div></a>
+            <a class="carousel-item" href="#one!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/mundofeliz.jpg" %}"  height="200" width="200"><div class="card-panel hoverable">Mundo Feliz</div></a>
           </div>
         </div>
       </div>
@@ -194,8 +195,8 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+  <script src="{% static "js/materialize.js" %}"></script>
+  <script src="{% static "js/init.js" %}"></script>
   <script type="text/javascript">
      $(document).ready(function(){
         $('.carousel').carousel();
