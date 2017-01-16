@@ -1,37 +1,13 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>CACESI</title>
-
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="{% static "css/materialize.css" %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="{% static "css/style.css" %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
-<body>
-  <nav class="black" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo white-text">CACESI</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#"></a></li>
-      </ul>
-
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-
-  <div id="index-banner" class="parallax-container  valign-wrapper">
+{% block content %}
+  <div class="parallax-container  valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
-         <div class="row">
-          <h5 class="header col s12 z-depth-5 center backgorund-semiblack">"Somos una empresa joven dedicada a brindar capacitación, asesoría y equipamiento de seguridad, personal e industrial siendo una empresa innovadora en la región noroeste del estado de Durango."</h5>
-        </div>
+        <h1 class="text_h center header cd-headline letters type backgorund-semiblack">
+            <span>Somos una empresa joven dedicada a brindar capacitación, asesoría y equipamiento de seguridad, personal e industrial siendo una empresa innovadora en la región noroeste del estado de Durango.</span> 
+      
+        </h1>
       </div>
     </div>
     <div class="parallax"><img src="{% static "images/home/banner3.JPG" %}" width="1300" alt="cacesi"></div>
@@ -79,7 +55,9 @@
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row center">
-          <h4 class="header col s12 z-depth-5 backgorund-semiblack">Ante un accidente el unico error es no estar preparado</h4>
+          <h4 class="text_h center letters type backgorund-semiblack">
+            <span>Ante un accidente el unico error es no estar preparado</span> 
+          </h4>
         </div>
       </div>
     </div>
@@ -127,7 +105,7 @@
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row">
-          <h4 class="header col s12 z-depth-5 center backgorund-semiblack">"Los desastres suelen presentarse sin aviso y rápidamente. La mejor manera de proteger el capital de su empresa es tener personal preparado para un potencial desastre."</h4>
+          <h4 class="text_h center letters type backgorund-semiblack">"Los desastres suelen presentarse sin aviso y rápidamente. La mejor manera de proteger el capital de su empresa es tener personal preparado para un potencial desastre."</h4>
         </div>
       </div>
     </div>
@@ -142,65 +120,25 @@
          
           <div class="carousel">
            <h4>Empresas que confian en CACESI</h4>
-            <a class="carousel-item" href="#two!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/topia.jpg" %}"><div class="card-panel hoverable">Grupo Topia</div></a>
-            <a class="carousel-item" href="#three!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/malborohouse.jpg" %}"><div class="card-panel hoverable">Malboro House</div></a>
-            <a class="carousel-item" href="#four!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/colegio.jpg" %}"><div class="card-panel hoverable">Colegio La Paz</div></a>
-            <a class="carousel-item" href="#five!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/tarahumar.jpg" %}"><div class="card-panel hoverable">Grupo Tarahumar</div></a>
-            <a class="carousel-item" href="#one!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/proteccion.jpg" %}"><div class="card-panel hoverable">Proteccion Civil Dgo</div></a>
-            <a class="carousel-item" href="#one!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/cecati.jpg" %}" height="200"><div class="card-panel hoverable">Cecati</div></a>
-            <a class="carousel-item" href="#one!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/mundofeliz.jpg" %}"  height="200" width="200"><div class="card-panel hoverable">Mundo Feliz</div></a>
+            <a class="carousel-item" href="#one!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/topia.jpg" %}"><div class="card-panel hoverable">Grupo Topia</div></a>
+            <a class="carousel-item" href="#two!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/malborohouse.jpg" %}"><div class="card-panel hoverable">Malboro House</div></a>
+            <a class="carousel-item" href="#three!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/colegio.jpg" %}"><div class="card-panel hoverable">Colegio La Paz</div></a>
+            <a class="carousel-item" href="#four!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/tarahumar.jpg" %}"><div class="card-panel hoverable">Grupo Tarahumar</div></a>
+            <a class="carousel-item" href="#five!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/proteccion.jpg" %}"><div class="card-panel hoverable">Proteccion Civil Dgo</div></a>
+            <a class="carousel-item" href="#six!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/cecati.jpg" %}" height="200"><div class="card-panel hoverable">Cecati</div></a>
+            <a class="carousel-item" href="#seven!"><img class="z-depth-5 circle" src="{% static "images/logosClientes/mundofeliz.jpg" %}"  height="200" width="200"><div class="card-panel hoverable">Mundo Feliz</div></a>
           </div>
         </div>
       </div>
 
     </div> 
   </div>
-
-  <footer class="page-footer black">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 m6 s12">
-          <h5 class="white-text">CACESI</h5>
-          <p class="grey-text text-lighten-4">Somos una empresa joven dedicada a brindar capacitación, asesoría y equipamiento de seguridad, personal e industrial siendo una empresa innovadora en la región noroeste del estado de Durango.</p>
-
-
-        </div>
-        <div class="col l3 m3 s6">
-          <h5 class="white-text">Site</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Asesorías</a></li>
-            <li><a class="white-text" href="#!">Cursos</a></li>
-            <li><a class="white-text" href="#!">Productos</a></li>
-            <li><a class="white-text" href="#!">Servicios</a></li>
-          </ul>
-        </div>
-        <div class="col l3 m3 s6">
-          <h5 class="white-text">Acerca de</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Contacto</a></li>
-            <li><a class="white-text" href="#!">Soporte</a></li>
-            <li><a class="white-text" href="#!">Ubicacion</a></li>
-            <li><a class="white-text" href="#!">Sitemap</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">@rogerortiza</a>
-      </div>
-    </div>
-  </footer>
-
-
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="{% static "js/materialize.js" %}"></script>
-  <script src="{% static "js/init.js" %}"></script>
+{% endblock %}
+{% block extraJs %}
   <script type="text/javascript">
      $(document).ready(function(){
         $('.carousel').carousel();
       });
   </script>
-  </body>
-</html>
+{% endblock %}
+
