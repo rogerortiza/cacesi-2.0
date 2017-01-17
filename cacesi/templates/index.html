@@ -4,9 +4,12 @@
   <div class="parallax-container  valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
+        <div class="center"> 
+          <img class="circle responsive-img z-depth-5" src="{% static "images/home/logo.png" %}" width="200">   
+        </div>
+        
         <h1 class="text_h center header cd-headline letters type backgorund-semiblack">
-            <span>Somos una empresa joven dedicada a brindar capacitación, asesoría y equipamiento de seguridad, personal e industrial siendo una empresa innovadora en la región noroeste del estado de Durango.</span> 
-      
+          <span>Somos una empresa joven dedicada a brindar capacitación, asesoría y equipamiento de seguridad, personal e industrial siendo una empresa innovadora en la región noroeste del estado de Durango.</span>     
         </h1>
       </div>
     </div>
@@ -23,8 +26,8 @@
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">hearing</i></h2>
             <h5 class="center">Asesorías</h5>
-
             <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+            <a href="{% url 'asesorias' %}">Ver todas las asesorias</a> 
           </div>
         </div>
 
@@ -73,8 +76,8 @@
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">person_pin</i></h2>
             <h5 class="center">Nuestro Personal</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+            <p class="light">En CACESI contamos con personal capacitado y de larga experiencia que nos permite ayudarle a cumplir con los reglamentos y normas oficiales nacionales e internaciones, y por supuesto garantizar su seguridad.</p>
+            <a href="{% url 'team' %}">Concosca el equipo</a> 
           </div>
         </div>
 
@@ -82,7 +85,6 @@
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">grade</i></h2>
             <h5 class="center">Nuestras Certificaciones</h5>
-
             <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
           </div>
         </div>
@@ -92,7 +94,7 @@
             <h2 class="center brown-text"><i class="material-icons">verified_user</i></h2>
             <h5 class="center">Servicios</h5>
 
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+            <p class="light">El compromiso central de CACESI es la satisfacción de las necesidades y  expectativas del cliente, ofreciendo una alta gama de productos y servicios que cubran el cumplimiento de las normas oficiales mexicana en el rubro de la seguridad industrial.</p>
           </div>
         </div>
       </div>
@@ -112,7 +114,30 @@
     <div class="parallax"><img src="{% static "images/home/banner1.JPG" %}" width="1300" alt="Unsplashed background img 3"></div>
   </div>
 
-  <div class="container">
+
+
+
+
+  <div class="slider">
+    <ul class="slides">
+      <li>
+        <img src="http://lorempixel.com/580/250/nature/1"> <!-- random image -->
+        <div class="caption center-align">
+          <h3>Mision</h3>
+          <h5 class="light grey-text text-lighten-3">Impartir y promover la formación de los trabajadores y empresas en temas de seguridad industrial y protección civil, mediante capacitaciones integrales y profesionales; garantizando la calidad de sus temas e instructores, logrando una vinculación con las autoridades que así le competan.</h5>
+        </div>
+      </li>
+      <li>
+        <img src="http://lorempixel.com/580/250/nature/2"> <!-- random image -->
+        <div class="caption left-align">
+          <h3>Vision</h3>
+          <h5 class="light grey-text text-lighten-3">Ser la empresa capacitadora líder en la zona norte del país y estar a la vanguardia en la Capacitación y Adiestramiento, que de respuesta a la empresas en los cumplimientos que las normas y leyes exigen. </h5>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+    <div class="container">
      <div class="section">
 
       <div class="row">
@@ -138,7 +163,9 @@
   <script type="text/javascript">
      $(document).ready(function(){
         $('.carousel').carousel();
+        $('.slider').slider({full_width: true});
       });
+
   </script>
 {% endblock %}
 
