@@ -118,10 +118,10 @@
 
 
 
-  <div class="slider">
+  <div class="slider background-semiblack-1">
     <ul class="slides">
       <li>
-        <img src="http://lorempixel.com/580/250/nature/1"> <!-- random image -->
+        <img src="{% static 'images/home/mision.JPG' %}" width="1300"> <!-- random image -->
         <div class="caption center-align">
           <h3>Mision</h3>
           <h5 class="light grey-text text-lighten-3">Impartir y promover la formación de los trabajadores y empresas en temas de seguridad industrial y protección civil, mediante capacitaciones integrales y profesionales; garantizando la calidad de sus temas e instructores, logrando una vinculación con las autoridades que así le competan.</h5>
@@ -163,7 +163,7 @@
   <script type="text/javascript">
      $(document).ready(function(){
         $('.carousel').carousel();
-        $('.slider').slider({full_width: true});
+        $('.slider').slider({full_width: true, height:600});
       });
 
   </script>

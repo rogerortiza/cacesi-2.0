@@ -61,3 +61,8 @@ footer.page-footer {
   border-radius: 10px;
   padding: 5px !important;
 }
+
+.background-semiblack-1 {
+  background-color: rgba(0,0,0,0.8);
+  z-index: 999;
+}
