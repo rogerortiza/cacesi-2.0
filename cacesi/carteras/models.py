@@ -23,3 +23,6 @@ class Clientes(models.Model):
 	pagina_web = models.CharField(max_length = 140)
 	logo = models.ImageField(upload_to = "static/logosClientes")
 	position = GeopositionField()
+
+	def __str__(self):
+		return self.nombre

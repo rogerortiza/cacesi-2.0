@@ -28,3 +28,6 @@ class Extintores(models.Model):
 	ultima_reca = models.DateTimeField("Ultima Recarga")
 	vencimiento = models.DateField(default = timezone.now)
 
+	def __str__(self):
+		return str(self.extintor)
+

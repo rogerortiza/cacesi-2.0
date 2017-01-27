@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "geoposition",
+    "rest_framework",
     "carteras.apps.CarterasConfig",
     "inspecciones.apps.InspeccionesConfig",
     "inventario_terceros.apps.InventarioTercerosConfig",
@@ -130,3 +131,15 @@ STATICFILES_DIRS = [
 
 # Google API Key
 GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyBCw4m8S-72kHP3xOJyHIz2-GeXdhcKCvM'
+
+# Django Rest Framework
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',)
+}

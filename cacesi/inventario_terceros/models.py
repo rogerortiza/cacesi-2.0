@@ -15,3 +15,6 @@ class Extintores(models.Model):
 	clasificacion = models.CharField(max_length = 140)
 	capacidad = models.CharField(max_length = 140)
 	foto = models.ImageField(upload_to="static/images/extintores")
+
+	def __str__(self):
+		return self.no_control
