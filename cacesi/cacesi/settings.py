@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "geoposition",
+    "carteras.apps.CarterasConfig",
+    "inspecciones.apps.InspeccionesConfig",
+    "inventario_terceros.apps.InventarioTercerosConfig",
+    "plantilla.apps.PlantillaConfig",
 ]
 
 MIDDLEWARE = [
@@ -103,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-MX'
 
 TIME_ZONE = 'UTC'
 
@@ -122,3 +127,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+# Google API Key
+GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyBCw4m8S-72kHP3xOJyHIz2-GeXdhcKCvM'
