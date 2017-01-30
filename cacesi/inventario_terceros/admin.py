@@ -4,7 +4,7 @@ from .models import Extintores
 
 # Register your models here.
 class ExtintoresAdmin(admin.ModelAdmin):
-	list_display = ('no_control', 'cliente', 'tipo_extintor', 'foto_extintor')
+	list_display = ('no_control', 'cliente', 'area', 'tipo_extintor', 'foto_extintor')
 
 	def foto_extintor(self, obj):
 		url = obj.foto.url

@@ -15,16 +15,28 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from rest_framework import routers
-from dashboard.views import asesorias, home, team
+from rest_framework_nested import routers
+from dashboard.views import asesorias, dashboard, home, team
+from carteras.viewsets import  ClientesViewSet
+from inspecciones.viewsets import ExtintoresViewSet
+from inventario_terceros.viewsets import ExtintoresTercerosViewSet
 
 router = routers.DefaultRouter()
+router.register(r'clientes', ClientesViewSet, base_name="clientes")
+router.register(r'inspecciones_extintores', ExtintoresViewSet, base_name="inspecciones_extintores")
+router.register(r'extintores_terceros', ExtintoresTercerosViewSet, base_name="exintores_terceros")
+
+dashboard_router = routers.NestedSimpleRouter(router, r'clientes', lookup='cliente')
+dashboard_router.register(r'extintores_terceros', ExtintoresTercerosViewSet, base_name='exintores_terceros')
+dashboard_router.register(r'inspeccion_extintores', ExtintoresViewSet, base_name='inspeccion_exintores')
 
 urlpatterns = [
 	url(r'^$', home, name="home" ),
 	url(r'^asesorias/$', asesorias, name="asesorias" ),
-	url(r'^team/$', team, name="team" ),
+	url(r'^dashboard/$', dashboard, name="dashboard" ),
+    url(r'^team/$', team, name="team" ),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
+    url(r'^api/', include(dashboard_router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
