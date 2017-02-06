@@ -1,8 +1,12 @@
 from django.conf.urls import url
-from .views import asesorias, home, equipo
+from .views import AreasClass, DashboardClass, ExtintoresClass, LoginClass, logout
 
+app_name = "dashboard"
 
 urlpatterns = [
-    url(r'^asesorias/', asesorias, name="asesorias"),
-    url(r'^equipo/', equipo, name="equipo"),
+    url(r'^$', DashboardClass.as_view(), name="home" ),
+    url(r'^login/$', LoginClass.as_view(), name = 'login'),
+    url(r'^logout/$', logout, name = 'logout'),
+    url(r'^areas/$', AreasClass.as_view(), name = 'areas'),
+    url(r'^extintores/$', ExtintoresClass.as_view(), name = 'extintores'),
 ]

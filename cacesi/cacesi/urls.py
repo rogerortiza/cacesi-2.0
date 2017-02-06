@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework_nested import routers
-from dashboard.views import asesorias, dashboard, home, team
+from dashboard.views import asesorias, DashboardClass, LoginClass, home, team
 from carteras.viewsets import  ClientesViewSet
 from inspecciones.viewsets import ExtintoresViewSet
 from inventario_terceros.viewsets import ExtintoresTercerosViewSet
@@ -33,7 +33,7 @@ dashboard_router.register(r'inspeccion_extintores', ExtintoresViewSet, base_name
 urlpatterns = [
 	url(r'^$', home, name="home" ),
 	url(r'^asesorias/$', asesorias, name="asesorias" ),
-	url(r'^dashboard/$', dashboard, name="dashboard" ),
+	url(r'^dashboard/', include('dashboard.urls')),
     url(r'^team/$', team, name="team" ),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),

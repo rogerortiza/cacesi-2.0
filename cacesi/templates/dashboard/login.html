@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block extraStyle %}
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" /> 
+{% endblock %}
+
+{% block content %}
+
+  <div class="demo-graphs mdl-shadow--2dp mdl-color--black mdl-cell mdl-cell--8-col">
+           <div class="demo-blog__posts mdl-grid">
+	<div class = "" >
+			<form method="post" action="">
+				{% csrf_token %}
+				{% include "includes/_forms.html" with form=form only %}
+				<input class="" type="submit" value="ingreso">
+			</form>
+		</div>
+
+</div>
+ 
+
+	
+	<footer>
+  	<a href="#"> Olvide mi contraseña  </a>
+		<p> Crea una nueva cuenta <a href=""> aqui </a></p>
+	</footer>
+          </div>
+  </div>
+  </div>
+
+
+
+
+{% endblock %}
+
+

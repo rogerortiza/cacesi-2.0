@@ -4,6 +4,7 @@ from inventario_terceros.models import Extintores as ExtintoresTerceros
 from inspecciones.models import Extintores
 
 class ExtintorSerializer(serializers.ModelSerializer):
+	area = serializers.StringRelatedField()
 	cliente = serializers.StringRelatedField()
 
 	class Meta:

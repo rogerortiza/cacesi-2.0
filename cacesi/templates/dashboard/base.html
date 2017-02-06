@@ -1,0 +1,47 @@
+{% load static %}
+<!Doctype html>
+<html lang="es" ng-app="cacesi">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CACESI | Dashboard</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="CACESI">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="{% static "images/touch/ms-touch-icon-144x144-precomposed.png" %}">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="{% static "images/favicon.ico" %}">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{% static "css/material.min.css" %}" type="text/css" rel="stylesheet">
+    <link href="{% static "css/dashborad_styles.css" %}" type="text/css" rel="stylesheet">
+    {% block extraStyle %} {% endblock %}
+	</head>
+
+  <body>
+  	{% block content %} {% endblock %}
+	
+		<script src="{% static "js/material.min.js" %}"></script>
+    <script src="{% static "js/angular.min.js" %}"></script>
+    <script src="{% static "js/app/app.js" %}"></script>
+    <script src="{% static "js/app/controllers.js" %}"></script>
+    <script src="{% static "js/app/services.js" %}"></script>
+  </body>
+</html>

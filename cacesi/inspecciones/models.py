@@ -19,14 +19,16 @@ class Extintores(models.Model):
 	nanometro = models.BooleanField()
 	peso = models.BooleanField()
 	manguera = models.BooleanField()
-	señalamiento = models.BooleanField()
+	senalamiento = models.BooleanField()
 	altura = models.BooleanField()
 	proteccion = models.BooleanField()
+	limpieza = models.BooleanField()
 	operable = models.BooleanField()
 	obstruido = models.BooleanField()
 	observaciones = models.TextField()
 	ultima_reca = models.DateTimeField("Ultima Recarga")
 	vencimiento = models.DateField(default = timezone.now)
+	foto = models.ImageField(upload_to="static/images/inspecciones/observaciones")
 
 	def __str__(self):
 		return str(self.extintor)
