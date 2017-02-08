@@ -1,16 +1,23 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-  <div class="parallax-container  valign-wrapper">
-    <div class="section no-pad-bot">
+  <div class="parallax-container valign-wrapper  background-semiblack-1">
+    <div class="section no-pad-bot ">
       <div class="container">
-        <div class="center"> 
-          <img class="circle responsive-img z-depth-5" src="{% static "images/home/logo.png" %}" width="200">   
+        <div class="center text_h "> 
+          <img class="circle responsive-img z-depth-5" src="{% static "images/home/logo.png" %}" width="200">  
+          <p></p>
+           <h4 class="center header cd-headline letters type">
+            <span>Somos </span> 
+            <span class="cd-words-wrapper waiting">
+                <b class="is-visible">Asesoría</b>
+                <b>Capacitación</b>
+                <b>Seguridad</b>
+            </span>
+        </h4> 
         </div>
         
-        <h1 class="text_h center header cd-headline letters type backgorund-semiblack">
-          <span>Somos una empresa joven dedicada a brindar capacitación, asesoría y equipamiento de seguridad, personal e industrial siendo una empresa innovadora en la región noroeste del estado de Durango.</span>     
-        </h1>
+       
       </div>
     </div>
     <div class="parallax"><img src="{% static "images/home/banner3.JPG" %}" width="1300" alt="cacesi"></div>
@@ -19,10 +26,22 @@
 
   <div class="container">
     <div class="section">
+<p></p>
 
       <!--   Icon Section   -->
       <div class="row">
-        <div class="col s12 m4">
+        <div class="container">
+        <div class="row">
+      <div class="col s12 m12">
+        <div class="card-panel  brown darken-4">
+          <h5 class="white-text center">"Somos una empresa joven dedicada a brindar capacitación, asesoría y equipamiento de seguridad, personal e industrial siendo una empresa innovadora en la región noroeste del estado de Durango."</h5>
+        </div>
+      </div>
+    </div>
+          
+        </div>
+
+        <div class="col s12 m3">
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">hearing</i></h2>
             <h5 class="center">Asesorías</h5>
@@ -31,7 +50,7 @@
           </div>
         </div>
 
-        <div class="col s12 m4">
+        <div class="col s12 m3">
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">group</i></h2>
             <h5 class="center">Cursos</h5>
@@ -40,12 +59,20 @@
           </div>
         </div>
 
-        <div class="col s12 m4">
+        <div class="col s12 m3">
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">shopping_cart</i></h2>
             <h5 class="center">Productos</h5>
 
             <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+          </div>
+        </div>
+         <div class="col s12 m3">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">hearing</i></h2>
+            <h5 class="center">Asesorías</h5>
+            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+            <a href="{% url 'asesorias' %}">Ver todas las asesorias</a> 
           </div>
         </div>
       </div>
@@ -54,12 +81,12 @@
   </div>
 
 
-  <div class="parallax-container valign-wrapper">
+  <div class="parallax-container valign-wrapper  background-semiblack-1">
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row center">
-          <h4 class="text_h center letters type backgorund-semiblack">
-            <span>Ante un accidente el unico error es no estar preparado</span> 
+          <h4 class="text_h center letters type">
+            <span class="white-text text-darken-4">Ante un accidente el unico error es no estar preparado</span> 
           </h4>
         </div>
       </div>
@@ -103,11 +130,11 @@
   </div>
 
 
-  <div class="parallax-container valign-wrapper">
+  <div class="parallax-container valign-wrapper  background-semiblack-1">
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row">
-          <h4 class="text_h center letters type backgorund-semiblack">"Los desastres suelen presentarse sin aviso y rápidamente. La mejor manera de proteger el capital de su empresa es tener personal preparado para un potencial desastre."</h4>
+          <h4 class="text_h center white-text text-darken-4">"Los desastres suelen presentarse sin aviso y rápidamente. La mejor manera de proteger el capital de su empresa es tener personal preparado para un potencial desastre."</h4>
         </div>
       </div>
     </div>
