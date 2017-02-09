@@ -5,6 +5,11 @@
  *
  * Made By MaterializeCSS.com
  */
+/*
+html {
+    font-family: GillSans, Calibri, Trebuchet, sans-serif;
+}
+ */
 
 nav ul a,
 nav .brand-logo {
@@ -63,6 +68,6 @@ footer.page-footer {
 }
 
 .background-semiblack-1 {
-  background-color: rgba(0,0,0,0.8);
-  z-index: 999;
+  background-color: rgba(0,0,0,0.6);
+ 
 }
