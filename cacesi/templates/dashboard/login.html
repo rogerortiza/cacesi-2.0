@@ -7,31 +7,37 @@
 {% endblock %}
 
 {% block content %}
-
-  <div class="demo-graphs mdl-shadow--2dp mdl-color--black mdl-cell mdl-cell--8-col">
-           <div class="demo-blog__posts mdl-grid">
-	<div class = "" >
-			<form method="post" action="">
+  <!-- End Page Loading -->
+<div class="login-height ">
+	 <div id="login-page" class="row">
+    <div class="col s4 offset-s4 z-depth-4 card-panel z-depth-5">
+    	<form method="post" action="" class="login-form">  
 				{% csrf_token %}
+				<div class="row">
+          <div class="input-field col s12 center">
+            <img class="circle responsive-img z-depth-5" src="{% static "images/home/logo.png" %}" width="100"> 
+          </div>
+      	</div>
 				{% include "includes/_forms.html" with form=form only %}
-				<input class="" type="submit" value="ingreso">
+				
+        <div class="row">
+          <div class="input-field col s12 center">
+            <input class="waves-effect waves-light btn" type="submit" value="ingreso">
+          </div>
+        </div>	
+        <div class="row">
+          <div class="input-field col s6 m6 l6">
+            <p class="margin medium-small"><a href="page-register.html">Registrarme!</a></p>
+          </div>
+          <div class="input-field col s6 m6 l6">
+              <p class="margin right-align medium-small"><a href="page-forgot-password.html">Olvide contraseña</a></p>
+          </div>          
+        </div>
 			</form>
-		</div>
-
+   	</div>
+  </div>
 </div>
  
-
-	
-	<footer>
-  	<a href="#"> Olvide mi contraseña  </a>
-		<p> Crea una nueva cuenta <a href=""> aqui </a></p>
-	</footer>
-          </div>
-  </div>
-  </div>
-
-
-
 
 {% endblock %}
 

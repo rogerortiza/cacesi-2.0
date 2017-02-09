@@ -5,17 +5,18 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <title>CACESI</title>
-	<link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
-	<link rel="icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
+  <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
+  <link rel="icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
   <!-- CSS  -->
   <link href="{% static "css/min/plugin-min.css" %}" type="text/css" rel="stylesheet">
   <link href="{% static "css/min/custom-min.css" %}" type="text/css" rel="stylesheet" >
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="{% static "css/materialize.css" %}" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="{% static "css/style.css" %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  {% block  extraStyle %}  {% endblock %}
 </head>
 <body>
-	<nav class="black" role="navigation">
+  <nav class="black" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="{% url 'home' %}" class="brand-logo white-text">CACESI</a>
       <ul class="right hide-on-med-and-down">
@@ -28,8 +29,8 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-	{% block content %} {% endblock %}
-	<footer class="page-footer black">
+  {% block content %} {% endblock %}
+  <footer class="page-footer black">
     <div class="container">
       <div class="row">
         <div class="col l6 m6 s12">
@@ -64,12 +65,12 @@
       </div>
     </div>
   </footer>
-	  <!--  Scripts-->
+    <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="{% static "js/plugin-min.js" %}"></script>
   <script src="{% static "js/custom-min.js" %}"></script>
   <script src="{% static "js/materialize.js" %}"></script>
   <script src="{% static "js/init.js" %}"></script>
-	{% block extraJs %} {% endblock %}
+  {% block extraJs %} {% endblock %}
 </body>
 </html>

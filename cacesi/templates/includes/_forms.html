@@ -1,8 +1,14 @@
 {{ form.non_field_errors }}
 
 {% for field in form %}
-	<div class="row" >
-		<div class="">
+	<div class="row margin" >
+		<div class="input-field col s12">
+			{% if field.name == 'username' %}
+				<i class="mdi-social-person-outline prefix"></i>
+			{% elif field.name == 'password' %}
+				<i class="mdi-action-lock-outline prefix"></i>
+			{% endif %}
+			
 			{% if field.errors %}
 				{{ field.errors }}
 			{% endif %}

@@ -62,12 +62,16 @@ footer.page-footer {
 }
 
 .backgorund-semiblack {
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(255,255,255,0.2);
   border-radius: 10px;
-  padding: 5px !important;
+
 }
 
 .background-semiblack-1 {
-  background-color: rgba(0,0,0,0.6);
- 
+  background-color: rgba(0,0,0,0.4);
+}
+
+.login-height {
+  padding-top: 24px;
+  min-height: 550px !important;
 }
