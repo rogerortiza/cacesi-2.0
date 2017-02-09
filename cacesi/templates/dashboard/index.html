@@ -17,16 +17,16 @@
             </div>
           </div> -->
           Area : 
-          <select name="mySelect" id="mySelect"
-                  ng-options="area for area in areasTodas track by area"
-                  ng-model="areaSelected" ng-change="areaFilter(areaSelected, inspeccionesTodas)" class="mdl-button mdl-button--colored">
-                </select>
+          <select name="area" id="area"
+            ng-options="area for area in areasTodas track by area"
+            ng-model="areaSelected" ng-change="areaFilter(areaSelected, mesSelected, inspeccionesTodas)" class="mdl-button mdl-button--colored">
+          </select>
           Revision: 
-                <select name="" id="" class="mdl-button mdl-button--colored">
-                  <option value="1">Diciembre</option>
-                  <option value="2">Noviembre</option>
-                </select>
-                2016
+           <select name="mes" id="mes"
+            ng-options="mes.name for mes in mesesFull track by mes.id"
+            ng-model="mesSelected" ng-change="areaFilter(areaSelected, mesSelected, inspeccionesTodas)" class="mdl-button mdl-button--colored">
+          </select>
+          2016
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
             <i class="material-icons">more_vert</i>
           </button>
@@ -60,7 +60,6 @@
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Reportes</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Comentarios</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Avisos</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
           <div class="mdl-layout-spacer"></div>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
         </nav>
@@ -93,9 +92,9 @@
                   <thead>
                     <tr class="mdl-color--red-50">
                       <th class="mdl-data-table__cell--non-numeric">No.</th>
+                      <th class="mdl-data-table__cell--non-numeric">Area</th>
                       <th class="mdl-data-table__cell--non-numeric">Ubicación</th>
                       <th>Clave</th>
-                      <th>Tipo Extintor</th>
                       <th>Ultima Recarga</th>
                       <th>Vencimiento</th>
                     </tr>
@@ -103,9 +102,9 @@
                   <tbody>
                     <tr ng-repeat="extintorInfo in inspecciones">
                       <td class="mdl-data-table__cell--non-numeric">{$ extintorInfo.extintor.id $}</td>
+                      <td class="mdl-data-table__cell--non-numeric">{$ extintorInfo.extintor.area $}</td>
                       <td class="mdl-data-table__cell--non-numeric">{$ extintorInfo.extintor.ubicacion $}</td>
                       <td>{$ extintorInfo.extintor.no_control $}</td>
-                      <td>{$ extintorInfo.extintor.tipo_extintor $}</td>
                       <td>{$ extintorInfo.ultima_reca | date:'medium' $}</td>
                       <td>{$ extintorInfo.vencimiento $}</td>
                     </tr>
@@ -176,6 +175,7 @@
                     <tr class="mdl-color--purple-50">
                       <th class="mdl-data-table__cell--non-numeric">No.</th>
                       <th class="mdl-data-table__cell--non-numeric">Clave Extintor</th>
+                      <th class="mdl-data-table__cell--non-numeric">Fecha Revision</th>
                       <th class="mdl-data-table__cell--non-numeric">Revisado por</th>
                       <th class="mdl-data-table__cell--non-numeric">Observaciones</th>
                       <th>Foto</th>
@@ -185,6 +185,7 @@
                     <tr ng-repeat="observacion in inspecciones">
                       <td class="mdl-data-table__cell--non-numeric">{$ observacion.extintor.id $}</td>
                       <td class="mdl-data-table__cell--non-numeric">{$ observacion.extintor.no_control $}</td>
+                      <td class="mdl-data-table__cell--non-numeric">{$ observacion.fecha_revision | date:'medium' $}</td>
                       <td class="mdl-data-table__cell--non-numeric">{$ observacion.empleado $}</td>
                       <td class="mdl-data-table__cell--non-numeric">{$ observacion.observaciones $}</td>
                       <td>sdsdd</td>
