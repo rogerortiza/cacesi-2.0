@@ -28,14 +28,14 @@
             ng-model="mesSelected" ng-change="areaFilter(areaSelected, mesSelected, inspeccionesTodas)" class="mdl-button mdl-button--colored">
           </select>
           2016
-          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+         <!-- <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
             <i class="material-icons">more_vert</i>
           </button>
           <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
             <li class="mdl-menu__item">About</li>
             <li class="mdl-menu__item">Contact</li>
             <li class="mdl-menu__item"><a href="{% url 'dashboard:logout' %}">Salir</a></li>
-          </ul>
+          </ul>-->
         </div>
       </header>
       <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
@@ -50,7 +50,8 @@
               <span class="visuallyhidden">Accounts</span>
             </button>
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-              <li class="mdl-menu__item"><i class="material-icons">edit</i>Actualizar cuenta...</li>
+              <li class="mdl-menu__item"><i class="material-icons">account_box </i> Actualizar cuenta</li>
+              <li class="mdl-menu__item"><i class="material-icons">exit_to_app</i><a href="{% url 'dashboard:logout' %}">Salir</a></li>
             </ul>
           </div>
         </header>
@@ -71,7 +72,7 @@
           <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone graph"><div id="areas"></div></div>
           <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone graph"><div id="onle2"></div></div>
           <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone graph"><div id="revisiones"></div></div>
-          <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone graph"><div id="onle4"></div></div>
+          <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone graph"><div id="observaciones"></div></div>
         </div>
         <div class="mdl-grid demo-content">
           <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
@@ -200,6 +201,7 @@
           <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col">
             <div class="graph-2"><div id="status"></div></div>
           </div>
+          <!--
           <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
             <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
               <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
@@ -250,6 +252,7 @@
               </div>
             </div>
           </div>
+          -->
         </div>
       </main>
     </div>
@@ -270,12 +273,6 @@
     {"value": 100, "name": "140", "color": "#00BBD6"},
   ]
 
-
-    var data6 = [
-    {"value": 100, "name": "12", "color": "#EF3C79"},
-  ]
-
-
    d3plus.viz()
     .container("#onle2")
     .data(data4)
@@ -287,16 +284,6 @@
     .resize(true)
     .draw()
 
-  d3plus.viz()
-    .container("#onle4")
-    .data(data6)
-    .type("pie")
-    .id("name")
-    .size("value")
-    .title("Observaciones")
-    .color("color")
-    .resize(true)
-    .draw()
 
 </script>
 {% endblock %}

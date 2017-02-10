@@ -18,7 +18,7 @@
 			    .id("anomalia")
 			    .x("anomalia")
 			    .y("extintores")
-			    .title(title)
+			    .title({value : title, sub : 'Revisados '+$scope.inspecciones.length+' extintores'})
 			    .resize(true)
 			    .draw()
 	    }
@@ -45,6 +45,7 @@
 	      	mesesName = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 	      	$scope.mesesFull = [];
 	      	$scope.inspecciones = [];
+	      	totalObseraciones = 0;
 
 				angular.forEach(data, function(value, key) {
 					if(areaSelected == 'Todas' || areaSelected == value.extintor.area) {
@@ -55,6 +56,9 @@
 
 						if(mes == mesSelected.id || mesSelected.id == 'Todos') {
 							$scope.inspecciones.push(value);
+
+							if(value.observaciones != '')
+								totalObseraciones = totalObseraciones + 1;
 
 							if(areas.indexOf(value.extintor.area) === -1)
 								areas.push(value.extintor.area);
@@ -100,6 +104,8 @@
 						}		
 					}				
 				});
+
+				console.log(totalObseraciones);
 			
 				angular.forEach(meses, function(value, key) {
 					$scope.mesesFull.push({'id' : value, 'name' : mesesName[value-1]})
@@ -110,11 +116,16 @@
 				  {"value": 100, "name": areas.length, "color": "#ACEC00"},
 				]
 				var noInspecciones = [
-					{"value": 100, "name": $scope.inspecciones.length, "color": "#BA65C9"},
+					{"value":  $scope.inspecciones.length, "name": $scope.inspecciones.length, "color": "#BA65C9"},
+				]
+
+				var noObseraciones = [
+					{"value": 100, "name": totalObseraciones, "color": "#EF3C79"},
 				]
 
 				makeDonutGraph('Areas', 'areas', noAreas);
 				makeDonutGraph('Revisiones','revisiones', noInspecciones);
+				makeDonutGraph('Observaciones','observaciones', noObseraciones);
 				makeBarGraph('Extintores sin Anomalias', 'status', anomalias)
 			}
 

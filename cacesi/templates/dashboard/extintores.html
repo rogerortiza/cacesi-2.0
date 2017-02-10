@@ -12,8 +12,8 @@
               <i class="material-icons">search</i>
             </label>
             <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="search">
-              <label class="mdl-textfield__label" for="search">Enter your query...</label>
+              <input class="mdl-textfield__input" type="text" ng-model="searchTxt" id="search">
+              <label class="mdl-textfield__label" for="search">Enter...</label>
             </div>
           </div>
           <!-- Area : 
@@ -86,7 +86,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="extintor in extintores">
+                    <tr ng-repeat="extintor in extintores | filter : searchTxt">
                       <td class="mdl-data-table__cell--non-numeric">{$ extintor.no_control $}</td>
                       <td class="mdl-data-table__cell--non-numeric">{$ extintor.tipo_extintor $}</td>
                       <td class="mdl-data-table__cell--non-numeric">{$ extintor.capacidad $}</td>
