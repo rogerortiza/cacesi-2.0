@@ -20,10 +20,10 @@
     }])
     .factory('inspextintoresSrvc', ['$http', '$q', function($http, $q) {
 
-      function getInspExtintoresByClienteId() {
+      function getInspExtintoresByClienteId(clienteId) {
         var deferred = $q.defer();
 
-        $http.get('../api/clientes/1/inspeccion_extintores')
+        $http.get('../api/clientes/'+clienteId+'/inspeccion_extintores')
           .then(function(data) {
             deferred.resolve(data);
           });

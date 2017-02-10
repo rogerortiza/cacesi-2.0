@@ -23,28 +23,28 @@
 			    .draw()
 	    }
 
-			var makeDonutGraph = function(title, container, data) {
-				document.getElementById(container).innerHTML="";
-				d3plus.viz()
-				    .container('#'+container)
-				    .data(data)
-				    .type("pie")
-				    .tooltip(false)
-				    .id("name")
-				    .size("value")
-				    .title(title)
-				    .color("color")
-				    .resize(true)
-				    .draw()
-			}
+		var makeDonutGraph = function(title, container, data) {
+			document.getElementById(container).innerHTML="";
+			d3plus.viz()
+			    .container('#'+container)
+			    .data(data)
+			    .type("pie")
+			    .tooltip(false)
+			    .id("name")
+			    .size("value")
+			    .title(title)
+			    .color("color")
+			    .resize(true)
+			    .draw()
+		}
 
-			$scope.areaFilter = function(areaSelected, mesSelected, data) {
-      	areas = [];
-      	anomalias = [];
-      	meses =[];
-      	mesesName = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-      	$scope.mesesFull = [];
-      	$scope.inspecciones = [];
+		$scope.areaFilter = function(areaSelected, mesSelected, data) {
+	      	areas = [];
+	      	anomalias = [];
+	      	meses =[];
+	      	mesesName = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+	      	$scope.mesesFull = [];
+	      	$scope.inspecciones = [];
 
 				angular.forEach(data, function(value, key) {
 					if(areaSelected == 'Todas' || areaSelected == value.extintor.area) {
@@ -118,7 +118,7 @@
 				makeBarGraph('Extintores sin Anomalias', 'status', anomalias)
 			}
 
-    inspextintoresSrvc.getInspExtintoresByClienteId().then(function(data) {
+    inspextintoresSrvc.getInspExtintoresByClienteId($scope.clienteid).then(function(data) {
     	areasTodas = [];
       $scope.cliente = data.data[0].extintor.cliente;
       $scope.areaSelected = "Todas";

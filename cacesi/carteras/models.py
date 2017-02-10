@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from geoposition.fields import GeopositionField
 
@@ -22,6 +23,7 @@ class Clientes(models.Model):
 	email = models.CharField(max_length = 60)
 	pagina_web = models.CharField(max_length = 140)
 	logo = models.ImageField(upload_to = "static/logosClientes")
+	usuario = models.OneToOneField(User, blank = True, null=True, on_delete = models.CASCADE )
 	position = GeopositionField()
 
 	def __str__(self):
