@@ -5,6 +5,13 @@ from plantilla.models  import Empleados
 
 # Create your models here.
 class Extintores(models.Model):
+	STATUS = [
+		('En su lugar', 'En su lugar'),
+		('No Encontrado', 'No Encontrado'),
+		('Reemplazado por caducidad', 'Reemplazado por caducidad'),
+		('Reemplazado por falta de presion', 'Reemplazado por falta de presion')
+	]
+
 	class Meta:
 		verbose_name_plural='Extintores'
 
@@ -12,6 +19,11 @@ class Extintores(models.Model):
 	empleado = models.ForeignKey(Empleados, on_delete = models.CASCADE)
 	extintor= models.ForeignKey(Extintores, on_delete = models.CASCADE)
 	fecha_revision = models.DateTimeField(default = timezone.now)
+	condicion = models.TextField()
+	foto_antes = models.ImageField(upload_to = "static/images/inspecciones/reportes/antes")
+	acciones = models.TextField()
+	status = models.CharField(max_length = 140, choices=STATUS)
+	foto_despues = models.ImageField(upload_to = "static/images/inspecciones/reportes/despues")
 	etiqueta = models.BooleanField()
 	seguro = models.BooleanField()
 	pintura = models.BooleanField()
@@ -28,7 +40,7 @@ class Extintores(models.Model):
 	observaciones = models.TextField()
 	ultima_reca = models.DateTimeField("Ultima Recarga")
 	vencimiento = models.DateField(default = timezone.now)
-	foto = models.ImageField(upload_to="static/images/inspecciones/observaciones")
+	foto = models.ImageField(upload_to="static/images/inspecciones/observaciones", blank = True)
 
 	def __str__(self):
 		return str(self.extintor)

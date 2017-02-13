@@ -23,7 +23,7 @@
       function getInspExtintoresByClienteId(clienteId) {
         var deferred = $q.defer();
 
-        $http.get('../api/clientes/'+clienteId+'/inspeccion_extintores')
+        $http.get('../../api/clientes/'+clienteId+'/inspeccion_extintores')
           .then(function(data) {
             deferred.resolve(data);
           });
@@ -39,10 +39,10 @@
 
     .factory('extintorTerceroSrvc', ['$http', '$q', function($http, $q) {
 
-      function getExtintorByCliente() {
+      function getExtintorByCliente(clienteId) {
         var deferred = $q.defer();
 
-        $http.get('../../api/clientes/1/extintores_terceros')
+        $http.get('../../api/clientes/'+clienteId+'/extintores_terceros')
           .then(function(data) {
             deferred.resolve(data);
           });

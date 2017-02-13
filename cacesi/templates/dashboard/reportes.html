@@ -6,7 +6,7 @@
     <div ng-controller="inspextintoresCtrl" class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
       <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">Dashboard</span>
+          <span class="mdl-layout-title">Reportes</span>
           <div class="mdl-layout-spacer"></div>
           <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
@@ -97,8 +97,8 @@
                       <th class="mdl-data-table__cell--non-numeric">Clave</th>
                       <th class="mdl-data-table__cell--non-numeric">Area</th>
                       <th class="mdl-data-table__cell--non-numeric">Ubicación</th>     
-                      <th>Ultima Recarga</th>
-                      <th>Vencimiento</th>
+                      <th>Condición</th>
+                      <th>Acciones</th>
                       <th>Status</th>
                     </tr>
                   </thead>
@@ -108,8 +108,8 @@
                       <td class="mdl-data-table__cell--non-numeric">{$ extintorInfo.extintor.no_control $}</td>
                       <td class="mdl-data-table__cell--non-numeric">{$ extintorInfo.extintor.area $}</td>
                       <td class="mdl-data-table__cell--non-numeric">{$ extintorInfo.extintor.ubicacion $}</td>
-                      <td>{$ extintorInfo.ultima_reca | date:'medium' $}</td>
-                      <td>{$ extintorInfo.vencimiento $}</td>
+                      <td>{$ extintorInfo.condicion $}</td>
+                      <td>{$ extintorInfo.acciones $}</td>
                       <td>{$ extintorInfo.status $} </td>
                     </tr>
                   </tbody>

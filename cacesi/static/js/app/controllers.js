@@ -9,6 +9,21 @@
     }])
 
     .controller('inspextintoresCtrl', ['$scope', 'inspextintoresSrvc', function($scope, inspextintoresSrvc) {
+    	   var data4 = [
+    {"value": 100, "name": "140", "color": "#00BBD6"},
+  ]
+
+   d3plus.viz()
+    .container("#onle2")
+    .data(data4)
+    .type("pie")
+    .id("name")
+    .size("value")
+    .title("Extintores")
+    .color("color")
+    .resize(true)
+    .draw()
+
 	    var makeBarGraph = function(title, container, data) {
 	    	document.getElementById(container).innerHTML="";
 	    	d3plus.viz()
@@ -104,8 +119,6 @@
 						}		
 					}				
 				});
-
-				console.log(totalObseraciones);
 			
 				angular.forEach(meses, function(value, key) {
 					$scope.mesesFull.push({'id' : value, 'name' : mesesName[value-1]})
@@ -152,7 +165,7 @@
   .controller('extintorTerceroCtrl', ['$scope', 'extintorTerceroSrvc', function($scope, extintorTerceroSrvc) {
 		$scope.extintores = {};
 
-    extintorTerceroSrvc.getExtintorByCliente().then(function(data) {
+    extintorTerceroSrvc.getExtintorByCliente($scope.clienteid).then(function(data) {
      	$scope.extintores = data.data;
      	$scope.cliente = data.data[0].cliente;
      	console.log($scope.extintores);

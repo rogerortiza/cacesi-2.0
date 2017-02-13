@@ -47,6 +47,12 @@ class ExtintoresClass(LoginRequiredMixin, View):
 	def get(self, request, *args, **kwargs):
 		return render( request, 'dashboard/extintores.html', {})
 
+class ReportesClass(LoginRequiredMixin, View):
+	login_url = 'dashboard:login'
+	def get(self, request, *args, **kwargs):
+		return render( request, 'dashboard/reportes.html', {})
+
+
 
 @login_required( login_url = 'dashboard:login' )
 def logout(request):
