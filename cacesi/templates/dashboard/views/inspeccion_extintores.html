@@ -1,0 +1,151 @@
+<div class="section">
+</div>
+<div class="row z-depth-2">
+	<div class="col s12 m6 l3 graph"><div id="areas"></div></div>
+	<div class="col s12 m6 l3 graph"><div id="onle2"></div></div>
+	<div class="col s12 m6 l3 graph"><div id="revisiones"></div></div>
+	<div class="col s12 m6 l3 graph"><div id="observaciones"></div></div>
+</div>
+
+<div class="row"> 
+	<div class="fixed-action-btn toolbar">
+	  <a class="btn-floating btn-large red">
+	    <i class="large material-icons">settings</i>
+	  </a>
+	  <ul>
+	    <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">insert_chart</i></a></li>
+	    <li class="waves-effect waves-light"><a ng-json-export-excel data="inspeccionesByArea" report-fields="{id: 'Id', empleado:'Revisado por'}" href="#!"><i class="material-icons">cloud_download</i>
+	    <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">publish</i></a></li>
+	    <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">attach_file</i></a></li>
+	  </ul>
+	</div>
+</div>
+
+      <div class="row z-depth-3">
+        <div class="col s12 l6 graph-2"> <div id="kaka"> </div></div>  
+        <div class="col s12 l6 graph-2">  <div id="status"> </div>  </div>          
+      </div>
+     
+      <div class="section"></div>
+      <div class="row z-depth-3">
+        <ul id="tabs-swipe-demo " class="tabs">
+          <li class="tab col s3"><a class="active" href="#test-swipe-1">Extintores</a></li>
+          <li class="tab col s3"><a href="#test-swipe-2">Anomalias Fisicas</a></li>
+          <li class="tab col s3"><a href="#test-swipe-3">Anomalias Instalación</a></li>
+          <li class="tab col s3"><a href="#test-swipe-4">Observaciones</a></li>
+        </ul>   
+
+          <div id="test-swipe-1" class="col s12">
+            <table class="responsive-table highlight">
+              <thead>
+                <tr class="">
+                  <th class="">No.</th>
+                  <th class="">Extintor</th>
+                  <th class="">Area</th>
+                  <th class="">Ubicación</th>     
+                  <th>Ultima Recarga</th>
+                  <th>Vencimiento</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="extintorInfo in inspeccionesByArea">
+                  <td class="">{$ extintorInfo.extintor.id $}</td>
+                  <td class="">{$ extintorInfo.extintor.no_control $}</td>
+                  <td class="">{$ extintorInfo.extintor.area $}</td>
+                  <td class="">{$ extintorInfo.extintor.ubicacion $}</td>
+                  <td>{$ extintorInfo.ultima_reca | date:'medium' $}</td>
+                  <td>{$ extintorInfo.vencimiento $}</td>
+                  <td>{$ extintorInfo.status $} </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="test-swipe-2" class="col s12">
+            <table class="responsive-table">
+              <thead>
+                <tr class="">
+                  <th class="">No.</th>
+                  <th class="">Extintor</th>
+                  <th>Etiqueta</th>
+                  <th>Seguro</th>
+                  <th>Pintura</th>
+                  <th>Valvula</th>
+                  <th>Nanometro</th>
+                  <th>Manguera</th>
+                  <th>Peso</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="anomaFisica in inspeccionesByArea">
+                  <td class="">{$ anomaFisica.extintor.id $}</td>
+                  <td class="">{$ anomaFisica.extintor.no_control $}</td>
+                  <td><input type="checkbox" class="" id="ai-1" ng-checked="{$ anomaFisica.etiqueta $}" disabled> <label for="ai-1"></label></td>
+                  <td><input type="checkbox" class="" id="ai-2" ng-checked="{$ anomaFisica.seguro $}" disabled> <label for="ai-2"></label></td>
+                  <td><input type="checkbox" class="" id="ai-3" ng-checked="{$ anomaFisica.pintura $}" disabled> <label for="ai-3"></label></td>
+                  <td><input type="checkbox" class="" id="ai-4" ng-checked="{$ anomaFisica.valvula $}" disabled> <label for="ai-4"></label></td>
+                  <td><input type="checkbox" class="" id="ai-5" ng-checked="{$ anomaFisica.nanometro $}" disabled> <label for="ai-5"></label></td>
+                  <td><input type="checkbox" class="" id="ai-6" ng-checked="{$ anomaFisica.manguera $}" disabled> <label for="ai-6"></label></td>
+                  <td><input type="checkbox" class="" id="ai-7" ng-checked="{$ anomaFisica.peso $}" disabled> <label for="ai-7"></label></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="test-swipe-3" class="col s12">
+            <table class="responsive-table">
+              <thead>
+                <tr class="">
+                  <th class="">No.</th>
+                  <th class="">Clave Extintor</th>
+                  <th>Señalamiento</th>
+                  <th>Altura 1.5</th>
+                  <th>Protección</th>
+                  <th>Limpieza</th>
+                  <th>Operable</th>
+                  <th>Obstruido</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="anomaInsta in inspeccionesByArea">
+                  <td class="">{$ anomaInsta.extintor.id $}</td>
+                  <td class="">{$ anomaInsta.extintor.no_control $}</td>
+                  <td><input type="checkbox" id="an-1" class="" ng-checked="{$ anomaInsta.senalamiento $}" disabled><label for="an-1"></td>
+                  <td><input type="checkbox" id="an-2" class="" ng-checked="{$ anomaInsta.altura $}" disabled><label for="an-2"></td>
+                  <td><input type="checkbox" id="an-3" class="" ng-checked="{$ anomaInsta.proteccion $}" disabled><label for="an-3"></td>
+                  <td><input type="checkbox" id="an-4" class="" ng-checked="{$ anomaInsta.limpieza $}" disabled><label for="an-4"></td>
+                  <td><input type="checkbox" id="an-5" class="" ng-checked="{$ anomaInsta.operable $}" disabled><label for="an-5"></td>
+                  <td><input type="checkbox" id="an-6" class="" ng-checked="{$ anomaInsta.obstruido $}" disabled><label for="an-6"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="test-swipe-4" class="col s12">
+            <table class="responsive-table">
+              <thead>
+                <tr class="">
+                  <th class="">No.</th>
+                  <th class="">Clave Extintor</th>
+                  <th class="">Fecha Revision</th>
+                  <th class="">Revisado por</th>
+                  <th class="">Observaciones</th>
+                  <th>Foto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="observacion in inspeccionesByArea">
+                  <td class="">{$ observacion.extintor.id $}</td>
+                  <td class="">{$ observacion.extintor.no_control $}</td>
+                  <td class="">{$ observacion.fecha_revision | date:'medium' $}</td>
+                  <td class="">{$ observacion.empleado $}</td>
+                  <td class="">{$ observacion.observaciones $}</td>
+                  <td> <img class="materialboxed" width="50" height="50" src="/{$ observacion.foto $}" ></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+      <img class="materialboxed" width="150" src="http://materializecss.com/images/sample-1.jpg">
+

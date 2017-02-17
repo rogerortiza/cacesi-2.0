@@ -1,0 +1,17 @@
+{% load static %}
+  <div class="col s12 l6" ng-repeat="areaCliente in areasByCliente ">
+    <h4 class="header">{$ areaCliente.nombre $}</h4>
+    <div class="card horizontal">
+      <div class="">
+        <img class="responsive-img" width="200" src="{% static "images/logosClientes/colegio.jpg" %}">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <p>I am a very simple card. I am good at containing small bits of information.</p>
+        </div>
+        <div class="card-action">
+          <a href="/{$ areaCliente.plano $}" target="_blank">Descargar</a>
+        </div>
+      </div>
+    </div>
+  </div>

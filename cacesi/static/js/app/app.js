@@ -1,7 +1,7 @@
 (function(){
   var app = angular.module('cacesi', [
-    'cacesi.controllers',
-    'cacesi.services'
+  	'ngJsonExportExcel',
+
   ]).config(function($interpolateProvider) {
       $interpolateProvider.startSymbol('{$');
       $interpolateProvider.endSymbol('$}');

@@ -2,4 +2,7 @@ from django.contrib import admin
 from .models import Clientes
 
 # Register your models here.
-admin.site.register(Clientes)
+class ClientesAdmin(admin.ModelAdmin):
+	list_display = ('id', 'nombre', 'email')
+
+admin.site.register(Clientes, ClientesAdmin)

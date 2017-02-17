@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "inspecciones.apps.InspeccionesConfig",
     "inventario_terceros.apps.InventarioTercerosConfig",
     "plantilla.apps.PlantillaConfig",
+    "planteles.apps.PlantelesConfig",
 ]
 
 MIDDLEWARE = [

@@ -1,5 +1,5 @@
 (function(){
-  angular.module('cacesi.controllers', [])
+  angular.module('cacesi')
     .controller('clientesCtrl', ['$scope', 'clientesSrvc', function($scope, clientesSrvc) {
 		$scope.clientes = {};
 
@@ -8,159 +8,40 @@
       	});
     }])
 
-    .controller('inspextintoresCtrl', ['$scope', 'inspextintoresSrvc', function($scope, inspextintoresSrvc) {
-    	   var data4 = [
-    {"value": 100, "name": "140", "color": "#00BBD6"},
-  ]
+    .controller('filtersCtrl', ['$scope', 'getInfoService', function($scope, getInfoService) {
+    	var meses =[];
+    	var mesesName = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    	
+    	getInfoService.getInfoByIdCliente($scope.clienteid, 'inspeccion_extintores').then(function(data) {
+	    	areasTodas = [];
+	      $scope.cliente = data.data[0].extintor.cliente;
+	      $scope.areaSelected = "Areas";
+	      $scope.mesesFull = [];
+	      $scope.mesSelected = {'id' : 'Meses', 'name' : 'Meses'};
+	      $scope.inspeccionesTodas = data.data;
 
-   d3plus.viz()
-    .container("#onle2")
-    .data(data4)
-    .type("pie")
-    .id("name")
-    .size("value")
-    .title("Extintores")
-    .color("color")
-    .resize(true)
-    .draw()
+	      angular.forEach(data.data, function(value, key) {
+	      	if(areasTodas.indexOf(value.extintor.area) === -1)
+						areasTodas.push(value.extintor.area);
 
-	    var makeBarGraph = function(title, container, data) {
-	    	document.getElementById(container).innerHTML="";
-	    	d3plus.viz()
-			    .container("#status")
-			    .data(data)
-			    .type("bar")
-			    .id("anomalia")
-			    .x("anomalia")
-			    .y("extintores")
-			    .title({value : title, sub : 'Revisados '+$scope.inspecciones.length+' extintores'})
-			    .resize(true)
-			    .draw()
-	    }
-
-		var makeDonutGraph = function(title, container, data) {
-			document.getElementById(container).innerHTML="";
-			d3plus.viz()
-			    .container('#'+container)
-			    .data(data)
-			    .type("pie")
-			    .tooltip(false)
-			    .id("name")
-			    .size("value")
-			    .title(title)
-			    .color("color")
-			    .resize(true)
-			    .draw()
-		}
-
-		$scope.areaFilter = function(areaSelected, mesSelected, data) {
-	      	areas = [];
-	      	anomalias = [];
-	      	meses =[];
-	      	mesesName = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-	      	$scope.mesesFull = [];
-	      	$scope.inspecciones = [];
-	      	totalObseraciones = 0;
-
-				angular.forEach(data, function(value, key) {
-					if(areaSelected == 'Todas' || areaSelected == value.extintor.area) {
-						mes = value.fecha_revision.split('-')[1];
-
-						if(meses.indexOf(mes) === -1)
+					var mes = value.fecha_revision.split('-')[1];
+					
+					if(meses.indexOf(mes) === -1)
 							meses.push(mes);
+	      });
 
-						if(mes == mesSelected.id || mesSelected.id == 'Todos') {
-							$scope.inspecciones.push(value);
-
-							if(value.observaciones != '')
-								totalObseraciones = totalObseraciones + 1;
-
-							if(areas.indexOf(value.extintor.area) === -1)
-								areas.push(value.extintor.area);
-
-							if(value.altura === true)
-								anomalias.push({"anomalia":"altura", "extintores": 1});
-
-							if(value.etiqueta === true)
-								anomalias.push({"anomalia":"etiqueta", "extintores": 1});
-
-							if(value.limpieza === true)
-								anomalias.push({"anomalia":"limpieza", "extintores": 1});
-
-							if(value.manguera === true)
-								anomalias.push({"anomalia":"manguera", "extintores": 1});	
-
-							if(value.nanometro === true)
-								anomalias.push({"anomalia":"nanometro", "extintores": 1});
-
-							if(value.obstruido === true)
-								anomalias.push({"anomalia":"obstruido", "extintores": 1});	
-
-							if(value.operable === true)
-								anomalias.push({"anomalia":"operable", "extintores": 1});			
-				
-							if(value.peso == true)
-								anomalias.push({"anomalia":"peso", "extintores": 1});
-
-							if(value.pintura === true)
-								anomalias.push({"anomalia":"pintura", "extintores": 1});		
-
-							if(value.proteccion === true)
-								anomalias.push({"anomalia":"proteccion", "extintores": 1});	
-
-							if(value.seguro === true)
-								anomalias.push({"anomalia":"seguro", "extintores": 1});	
-
-							if(value.senalamiento === true)
-								anomalias.push({"anomalia":"senalamiento", "extintores": 1});	
-
-							if(value.valvula === true)
-								anomalias.push({"anomalia":"valvula", "extintores": 1});	
-						}		
-					}				
-				});
-			
-				angular.forEach(meses, function(value, key) {
+	      angular.forEach(meses, function(value, key) {
 					$scope.mesesFull.push({'id' : value, 'name' : mesesName[value-1]})
 				});
-				$scope.mesesFull.push({'id' : 'Todos', 'name' : 'Todos'})
 
-				var  noAreas = [
-				  {"value": 100, "name": areas.length, "color": "#ACEC00"},
-				]
-				var noInspecciones = [
-					{"value":  $scope.inspecciones.length, "name": $scope.inspecciones.length, "color": "#BA65C9"},
-				]
+	      areasTodas.push('Areas');
+	      $scope.mesesFull.push({'id' : 'Meses', 'name' : 'Meses'})
+				$scope.areasTodas = areasTodas.sort();
 
-				var noObseraciones = [
-					{"value": 100, "name": totalObseraciones, "color": "#EF3C79"},
-				]
+				//$scope.areaFilter($scope.areaSelected, $scope.mesSelected, $scope.inspeccionesTodas);
 
-				makeDonutGraph('Areas', 'areas', noAreas);
-				makeDonutGraph('Revisiones','revisiones', noInspecciones);
-				makeDonutGraph('Observaciones','observaciones', noObseraciones);
-				makeBarGraph('Extintores sin Anomalias', 'status', anomalias)
-			}
-
-    inspextintoresSrvc.getInspExtintoresByClienteId($scope.clienteid).then(function(data) {
-    	areasTodas = [];
-      $scope.cliente = data.data[0].extintor.cliente;
-      $scope.areaSelected = "Todas";
-      $scope.mesSelected = {'id' : 'Todos', 'name' : 'Todos'};
-      $scope.inspeccionesTodas = data.data;
-
-      angular.forEach(data.data, function(value, key) {
-      	if(areasTodas.indexOf(value.extintor.area) === -1)
-					areasTodas.push(value.extintor.area);
-      });
-
-      areasTodas.push('Todas');
-			$scope.areasTodas = areasTodas.sort();
-
-			$scope.areaFilter($scope.areaSelected, $scope.mesSelected, $scope.inspeccionesTodas);
-
-    });
-  }])
+	    });
+	  }])
 	
   .controller('extintorTerceroCtrl', ['$scope', 'extintorTerceroSrvc', function($scope, extintorTerceroSrvc) {
 		$scope.extintores = {};

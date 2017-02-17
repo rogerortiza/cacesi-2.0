@@ -1,11 +1,11 @@
 (function(){
-  angular.module('cacesi.services', [])
-     .factory('clientesSrvc', ['$http', '$q', function($http, $q) {
+  angular.module('cacesi')
+    .factory('getInfoService', ['$http', '$q', function($http, $q) {
 
-      function getClienteById() {
+      function getInfoByIdCliente(clienteId, url) {
         var deferred = $q.defer();
 
-        $http.get('../api/clientes/1')
+        $http.get('../../api/clientes/'+clienteId+'/'+url)
           .then(function(data) {
             deferred.resolve(data);
           });
@@ -14,44 +14,7 @@
       }
 
       return {
-        getClienteById : getClienteById
-      }
-
-    }])
-    .factory('inspextintoresSrvc', ['$http', '$q', function($http, $q) {
-
-      function getInspExtintoresByClienteId(clienteId) {
-        var deferred = $q.defer();
-
-        $http.get('../../api/clientes/'+clienteId+'/inspeccion_extintores')
-          .then(function(data) {
-            deferred.resolve(data);
-          });
-
-        return deferred.promise;
-      }
-
-      return {
-        getInspExtintoresByClienteId : getInspExtintoresByClienteId
-      }
-
-    }])
-
-    .factory('extintorTerceroSrvc', ['$http', '$q', function($http, $q) {
-
-      function getExtintorByCliente(clienteId) {
-        var deferred = $q.defer();
-
-        $http.get('../../api/clientes/'+clienteId+'/extintores_terceros')
-          .then(function(data) {
-            deferred.resolve(data);
-          });
-
-        return deferred.promise;
-      }
-
-      return {
-        getExtintorByCliente : getExtintorByCliente
+        getInfoByIdCliente : getInfoByIdCliente
       }
 
     }])

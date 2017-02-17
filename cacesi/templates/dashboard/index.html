@@ -2,261 +2,75 @@
 {% load static %}
 
 {% block content %}
-  <div ng-init="clienteid = {{user.clientes.id}} "></div>
-    <div ng-controller="inspextintoresCtrl" class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
-        <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">Dashboard</span>
-          <div class="mdl-layout-spacer"></div>
-          <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-              <i class="material-icons">search</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="search">
-              <label class="mdl-textfield__label" for="search">Enter your query...</label>
-            </div>
-          </div> -->
-          Area : 
-          <select name="area" id="area"
-            ng-options="area for area in areasTodas track by area"
-            ng-model="areaSelected" ng-change="areaFilter(areaSelected, mesSelected, inspeccionesTodas)" class="mdl-button mdl-button--colored">
-          </select>
-          Revision: 
-           <select name="mes" id="mes"
-            ng-options="mes.name for mes in mesesFull track by mes.id"
-            ng-model="mesSelected" ng-change="areaFilter(areaSelected, mesSelected, inspeccionesTodas)" class="mdl-button mdl-button--colored">
-          </select>
-          2016
-         <!-- <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-            <i class="material-icons">more_vert</i>
-          </button>
-          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-            <li class="mdl-menu__item">About</li>
-            <li class="mdl-menu__item">Contact</li>
-            <li class="mdl-menu__item"><a href="{% url 'dashboard:logout' %}">Salir</a></li>
-          </ul>-->
-        </div>
-      </header>
-      <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
-        <header class="demo-drawer-header">
-          <img src="{% static "images/logosClientes/colegio.jpg"%}" class="demo-avatar">
-          <div class="demo-avatar-dropdown">
-
-            <span>{$ cliente $}</span>
-            <div class="mdl-layout-spacer"></div>
-            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-              <i class="material-icons" role="presentation">arrow_drop_down</i>
-              <span class="visuallyhidden">Accounts</span>
-            </button>
-            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-              <li class="mdl-menu__item"><i class="material-icons">account_box </i> Actualizar cuenta</li>
-              <li class="mdl-menu__item"><i class="material-icons">exit_to_app</i><a href="{% url 'dashboard:logout' %}">Salir</a></li>
-            </ul>
-          </div>
-        </header>
-        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
-          <a class="mdl-navigation__link" href="{% url 'dashboard:areas' %}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">map</i>Areas</a>
-          <a class="mdl-navigation__link" href="{% url 'dashboard:extintores' %}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">battery_full</i>Extintores</a>
-          <a class="mdl-navigation__link" href="{% url 'dashboard:reportes' %}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Reportes</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Comentarios</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Avisos</a>
-          <div class="mdl-layout-spacer"></div>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
-        </nav>
+<div ng-init="clienteid = {{user.clientes.id}}; showPage='first' "></div>
+<div ng-controller="filtersCtrl" class="">
+<!-- Navbar goes here -->
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper blue-grey darken-4">
+        <a href="#!" class="brand-logo">CACESI</a>
+        <ul class="right hide-on-med-and-down">
+          <li class="littleRight"> 
+            <select class="browser-default blue-grey darken-4 ownSelect" ng-options="area for area in areasTodas track by area" 
+           ng-model="areaSelected">
+            </select>
+          </li>
+          <li class="littleRight"> 
+             <select name="mes" id="mes"
+              ng-options="mes.name for mes in mesesFull track by mes.id"
+              ng-model="mesSelected" class="browser-default blue-grey darken-4  ownSelect">
+            </select>
+          </li>
+          <li class="littleRight">2017</li>
+        </ul>
       </div>
-      
-      <main class="mdl-layout__content mdl-color--grey-100">
-        <div class="mdl-grid mdl-color--white">
-          <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone graph"><div id="areas"></div></div>
-          <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone graph"><div id="onle2"></div></div>
-          <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone graph"><div id="revisiones"></div></div>
-          <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone graph"><div id="observaciones"></div></div>
+    </nav>
+  </div>
+  <!-- Page Layout here -->
+  <div class="row blue-grey darken-3 reset">
+    <div class="col hide-on-small-only m3 l2 flow">
+      <div class="section">
+        <div class="row">
+          <div class="col m6">
+            <img class="circle responsive-img" src="{% static "images/logosClientes/colegio.jpg" %}">
+          </div>
         </div>
-        <div class="mdl-grid demo-content">
-          <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-    
-          </div>
+        <div class="row">
+          <div class="col l12">
+            <ul id='dropdown1' class='dropdown-content blue-grey darken-4 white-text'>
+              <li><a href="#!">Actualizar Cuenta</a></li>
+              <li><a href="#!">Cambiar contraseña</a></li>
+              <li><a href="#!">Salir</a></li>
+            </ul>
 
-          <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col">
-            <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-              <div class="mdl-tabs__tab-bar">
-                  <a href="#extintores" class="mdl-tabs__tab is-active">Extintores</a>
-                  <a href="#anomalias-fisicas" class="mdl-tabs__tab">Anomalias Fisicas</a>
-                  <a href="#anomalias-instalacion" class="mdl-tabs__tab">Anomalias Instalacion</a>
-                  <a href="#observaciones" class="mdl-tabs__tab">Observaciones</a>
-              </div>
-
-              <div class="mdl-tabs__panel is-active" id="extintores">
-                <p></p>
-                <table class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--12-col">
-                  <thead>
-                    <tr class="mdl-color--red-50">
-                      <th class="mdl-data-table__cell--non-numeric">No.</th>
-                      <th class="mdl-data-table__cell--non-numeric">Clave</th>
-                      <th class="mdl-data-table__cell--non-numeric">Area</th>
-                      <th class="mdl-data-table__cell--non-numeric">Ubicación</th>     
-                      <th>Ultima Recarga</th>
-                      <th>Vencimiento</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr ng-repeat="extintorInfo in inspecciones">
-                      <td class="mdl-data-table__cell--non-numeric">{$ extintorInfo.extintor.id $}</td>
-                      <td class="mdl-data-table__cell--non-numeric">{$ extintorInfo.extintor.no_control $}</td>
-                      <td class="mdl-data-table__cell--non-numeric">{$ extintorInfo.extintor.area $}</td>
-                      <td class="mdl-data-table__cell--non-numeric">{$ extintorInfo.extintor.ubicacion $}</td>
-                      <td>{$ extintorInfo.ultima_reca | date:'medium' $}</td>
-                      <td>{$ extintorInfo.vencimiento $}</td>
-                      <td>{$ extintorInfo.status $} </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="mdl-tabs__panel" id="anomalias-fisicas">
-                <table class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--12-col">
-                  <thead>
-                    <tr class="mdl-color--yellow-50">
-                      <th class="mdl-data-table__cell--non-numeric">No.</th>
-                      <th class="mdl-data-table__cell--non-numeric">Clave Extintor</th>
-                      <th>Etiqueta</th>
-                      <th>Seguro</th>
-                      <th>Pintura</th>
-                      <th>Valvula</th>
-                      <th>Nanometro</th>
-                      <th>Manguera</th>
-                      <th>Peso</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr ng-repeat="anomaFisica in inspecciones">
-                      <td class="mdl-data-table__cell--non-numeric">{$ anomaFisica.extintor.id $}</td>
-                      <td class="mdl-data-table__cell--non-numeric">{$ anomaFisica.extintor.no_control $}</td>
-                      <td ><input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" ng-checked="{$ anomaFisica.etiqueta $}" disabled></td>
-                      <td><input type="checkbox" id="checkbox-2" class="mdl-checkbox__input" ng-checked="{$ anomaFisica.seguro $}" disabled></td>
-                      <td><input type="checkbox" id="checkbox-3" class="mdl-checkbox__input" ng-checked="{$ anomaFisica.pintura $}" disabled></td>
-                      <td><input type="checkbox" id="checkbox-4" class="mdl-checkbox__input" ng-checked="{$ anomaFisica.valvula $}" disabled></td>
-                      <td><input type="checkbox" id="checkbox-4" class="mdl-checkbox__input" ng-checked="{$ anomaFisica.nanometro $}" disabled></td>
-                      <td><input type="checkbox" id="checkbox-5" class="mdl-checkbox__input" ng-checked="{$ anomaFisica.manguera $}" disabled></td>
-                      <td><input type="checkbox" id="checkbox-6" class="mdl-checkbox__input" ng-checked="{$ anomaFisica.peso $}" disabled></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="mdl-tabs__panel" id="anomalias-instalacion">
-                <table class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--12-col">
-                  <thead>
-                    <tr class="mdl-color--orange-50">
-                      <th class="mdl-data-table__cell--non-numeric">No.</th>
-                      <th class="mdl-data-table__cell--non-numeric">Clave Extintor</th>
-                      <th>Señalamiento</th>
-                      <th>Altura 1.5</th>
-                      <th>Protección</th>
-                      <th>Limpieza</th>
-                      <th>Operable</th>
-                      <th>Obstruido</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr ng-repeat="anomaInsta in inspecciones">
-                      <td class="mdl-data-table__cell--non-numeric">{$ anomaInsta.extintor.id $}</td>
-                      <td class="mdl-data-table__cell--non-numeric">{$ anomaInsta.extintor.no_control $}</td>
-                      <td><input type="checkbox" id="" class="mdl-checkbox__input" ng-checked="{$ anomaInsta.senalamiento $}" disabled></td>
-                      <td><input type="checkbox" id="" class="mdl-checkbox__input" ng-checked="{$ anomaInsta.altura $}" disabled></td>
-                      <td><input type="checkbox" id="" class="mdl-checkbox__input" ng-checked="{$ anomaInsta.proteccion $}" disabled></td>
-                      <td><input type="checkbox" id="" class="mdl-checkbox__input" ng-checked="{$ anomaInsta.limpieza $}" disabled></td>
-                      <td><input type="checkbox" id="" class="mdl-checkbox__input" ng-checked="{$ anomaInsta.operable $}" disabled></td>
-                      <td><input type="checkbox" id="" class="mdl-checkbox__input" ng-checked="{$ anomaInsta.obstruido $}" disabled></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="mdl-tabs__panel" id="observaciones">
-                 <table class="mdl-data-table mdl-js-data-table mdl-cell mdl-cell--12-col">
-                  <thead>
-                    <tr class="mdl-color--purple-50">
-                      <th class="mdl-data-table__cell--non-numeric">No.</th>
-                      <th class="mdl-data-table__cell--non-numeric">Clave Extintor</th>
-                      <th class="mdl-data-table__cell--non-numeric">Fecha Revision</th>
-                      <th class="mdl-data-table__cell--non-numeric">Revisado por</th>
-                      <th class="mdl-data-table__cell--non-numeric">Observaciones</th>
-                      <th>Foto</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr ng-repeat="observacion in inspecciones">
-                      <td class="mdl-data-table__cell--non-numeric">{$ observacion.extintor.id $}</td>
-                      <td class="mdl-data-table__cell--non-numeric">{$ observacion.extintor.no_control $}</td>
-                      <td class="mdl-data-table__cell--non-numeric">{$ observacion.fecha_revision | date:'medium' $}</td>
-                      <td class="mdl-data-table__cell--non-numeric">{$ observacion.empleado $}</td>
-                      <td class="mdl-data-table__cell--non-numeric">{$ observacion.observaciones $}</td>
-                      <td> <img src="/{$ observacion.foto $}" class="demo-avatar"></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col">
-            <div class="graph-2"><div id="status"></div></div>
-          </div>
-          <!--
-          <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
-            <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
-              <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
-                <h2 class="mdl-card__title-text">Updates</h2>
-              </div>
-              <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                Non dolore elit adipisicing ea reprehenderit consectetur culpa.
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read More</a>
-              </div>
-            </div>
-            <div class="demo-separator mdl-cell--1-col"></div>
-            <div class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
-              <div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
-                <h3>View options</h3>
-                <ul>
-                  <li>
-                    <label for="chkbox1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                      <input type="checkbox" id="chkbox1" class="mdl-checkbox__input">
-                      <span class="mdl-checkbox__label">Click per object</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label for="chkbox2" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                      <input type="checkbox" id="chkbox2" class="mdl-checkbox__input">
-                      <span class="mdl-checkbox__label">Views per object</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label for="chkbox3" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                      <input type="checkbox" id="chkbox3" class="mdl-checkbox__input">
-                      <span class="mdl-checkbox__label">Objects selected</span>
-                    </label>
-                  </li>
-                  <li>
-                    <label for="chkbox4" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                      <input type="checkbox" id="chkbox4" class="mdl-checkbox__input">
-                      <span class="mdl-checkbox__label">Objects viewed</span>
-                    </label>
-                  </li>
-                </ul>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Change location</a>
-                <div class="mdl-layout-spacer"></div>
-                <i class="material-icons">location_on</i>
-              </div>
-            </div>
-          </div>
-          -->
+            <div class=""><a class='dropdown-button' href='#' data-activates='dropdown1'> {$ cliente $} <i class="material-icons">new_releases</i></a></div>
+       
+          </div>   
         </div>
-      </main>
+      </div>
+
+      <div class="">
+        <a href="" ng-click="showPage = 'first'" class="lineLink"><i class="material-icons">home</i> Home</a>
+        <a href="" ng-click="showPage = 'second'" class="lineLink"><i class="material-icons">map</i> Areas</a>
+        <a href="" class="lineLink"><i class="material-icons">battery_std</i>Extintores</a>
+        <a href="" class="lineLink"><i class="material-icons">description</i>Reportes</a>
+        <a href="" class="lineLink"><i class="material-icons">comment</i>Comentarios</a>
+        <a href="" class="lineLink"><i class="material-icons">add_alert</i>Avisos</a>
+        <a href="" class="lineLink"><i class="material-icons">live_help</i>Ayuda</a>
+      </div>
     </div>
 
+    <div class="col s12 m9 l10 offset-m3 offset-l2 white blue-grey-text text-darken-3 min-page ">
+      <inspeccion-extintores ng-if="showPage == 'first'" area="areaSelected" mes = "mesSelected" inspecciones = "inspeccionesTodas" ></inspeccion-extintores>
+      <areas-cliente ng-if="showPage == 'second'" cliente="clienteid" ></areas-cliente>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extraJs %}
+  <script type="text/javascript">
+
+  </script>
 {% endblock %}
