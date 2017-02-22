@@ -1,6 +1,10 @@
 {% extends "dashboard/base.html" %}
 {% load static %}
 
+{% block title %}
+  <title>CACESI | Dashboard</title>
+{% endblock %}
+
 {% block content %}
 <div ng-init="clienteid = {{user.clientes.id}}; showPage='first' "></div>
 <div ng-controller="filtersCtrl" class="">

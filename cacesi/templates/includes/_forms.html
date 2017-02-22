@@ -12,8 +12,21 @@
 			{% if field.errors %}
 				{{ field.errors }}
 			{% endif %}
-			{{ field }}
-			<label class="{% for class in field.label_clasess %} {{ class }} {% endfor %}" for="{{ field.name }}" >  {{ field.label }} </label>
+
+			{% if field.name == 'foto_etiqueta_antes' or field.name == 'foto_etiqueta_despues' or field.name == 'foto_seguro_antes' or field.name == 'foto_seguro_despues' %}
+				 <div class="file-field input-field">
+		      <div class="btn">
+		        <span>Foto</span>
+		        {{ field }}
+		      </div>
+		      <div class="file-path-wrapper">
+		        <input class="file-path validate" type="text">
+		      </div>
+		    </div>
+			{% else %}
+				{{ field }}
+				<label class="{% for class in field.label_clasess %} {{ class }} {% endfor %}" for="{{ field.name }}" >  {{ field.label }} </label>
+			{% endif %}
 		</div>
 	</div>
 {%  endfor %}

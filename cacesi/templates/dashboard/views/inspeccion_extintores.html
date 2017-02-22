@@ -39,7 +39,6 @@
             <table class="responsive-table highlight">
               <thead>
                 <tr class="">
-                  <th class="">No.</th>
                   <th class="">Extintor</th>
                   <th class="">Area</th>
                   <th class="">Ubicación</th>     
@@ -50,7 +49,6 @@
               </thead>
               <tbody>
                 <tr ng-repeat="extintorInfo in inspeccionesByArea">
-                  <td class="">{$ extintorInfo.extintor.id $}</td>
                   <td class="">{$ extintorInfo.extintor.no_control $}</td>
                   <td class="">{$ extintorInfo.extintor.area $}</td>
                   <td class="">{$ extintorInfo.extintor.ubicacion $}</td>
@@ -66,7 +64,6 @@
             <table class="responsive-table">
               <thead>
                 <tr class="">
-                  <th class="">No.</th>
                   <th class="">Extintor</th>
                   <th>Etiqueta</th>
                   <th>Seguro</th>
@@ -79,7 +76,6 @@
               </thead>
               <tbody>
                 <tr ng-repeat="anomaFisica in inspeccionesByArea">
-                  <td class="">{$ anomaFisica.extintor.id $}</td>
                   <td class="">{$ anomaFisica.extintor.no_control $}</td>
                   <td><input type="checkbox" class="" id="ai-1" ng-checked="{$ anomaFisica.etiqueta $}" disabled> <label for="ai-1"></label></td>
                   <td><input type="checkbox" class="" id="ai-2" ng-checked="{$ anomaFisica.seguro $}" disabled> <label for="ai-2"></label></td>
@@ -97,7 +93,6 @@
             <table class="responsive-table">
               <thead>
                 <tr class="">
-                  <th class="">No.</th>
                   <th class="">Clave Extintor</th>
                   <th>Señalamiento</th>
                   <th>Altura 1.5</th>
@@ -109,7 +104,6 @@
               </thead>
               <tbody>
                 <tr ng-repeat="anomaInsta in inspeccionesByArea">
-                  <td class="">{$ anomaInsta.extintor.id $}</td>
                   <td class="">{$ anomaInsta.extintor.no_control $}</td>
                   <td><input type="checkbox" id="an-1" class="" ng-checked="{$ anomaInsta.senalamiento $}" disabled><label for="an-1"></td>
                   <td><input type="checkbox" id="an-2" class="" ng-checked="{$ anomaInsta.altura $}" disabled><label for="an-2"></td>
@@ -126,7 +120,6 @@
             <table class="responsive-table">
               <thead>
                 <tr class="">
-                  <th class="">No.</th>
                   <th class="">Clave Extintor</th>
                   <th class="">Fecha Revision</th>
                   <th class="">Revisado por</th>
@@ -136,7 +129,6 @@
               </thead>
               <tbody>
                 <tr ng-repeat="observacion in inspeccionesByArea">
-                  <td class="">{$ observacion.extintor.id $}</td>
                   <td class="">{$ observacion.extintor.no_control $}</td>
                   <td class="">{$ observacion.fecha_revision | date:'medium' $}</td>
                   <td class="">{$ observacion.empleado $}</td>

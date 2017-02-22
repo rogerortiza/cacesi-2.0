@@ -1,0 +1,850 @@
+{% extends 'dashboard/base.html' %}
+
+
+{% block title %}
+  <title>CACESI | Inspecciones </title>
+{% endblock %}
+
+{% block content %} 
+
+<!-- Dropdown Structure -->
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper blue-grey darken-4">
+      <a href="#!" class="brand-logo">CACESI</a>
+    </div>
+  </nav>
+</div>
+
+{% if messages %}
+		<div class="center-align">
+			<ul class="messages">
+	    	{% for message in messages %}
+	    		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+	    	{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+
+
+<div class="section"></div>
+
+	<div class = "container" >
+		<form method="post" action="">
+			{% csrf_token %}
+			<div class="row">
+				<div class="col l8 offset-l2">
+					<ul id="tabs-swipe-demo" class="tabs">
+				    <li class="tab col s4"><a href="#test-swipe-1">Datos de Extintor</a></li>
+				    <li class="tab col s4"><a href="#test-swipe-2">Anomalías</a></li>
+				    <li class="tab col s4"><a href="#test-swipe-3">Observaciones</a></li>
+				  </ul>
+				      
+				  <div id="test-swipe-1" class="col s12 ">
+				  <p></p>
+				  	<div class="row margin">
+							<div class="input-field col s12">
+						    {{form.empleado}}
+						    <label>Empleado</label>
+						  </div>
+						</div>
+
+						<div class="row margin">
+							<div class="input-field col s12">
+						    {{form.extintor}}
+						    <label>Extintor</label>
+						  </div>
+						</div>
+							
+						<div class="row margin">
+						 	<div class="input-field col s12">
+						  	{{ form.fecha_revision }}
+						  	<label for="fecha_revision">Fecha Revision</label>
+						  </div>
+						</div>
+
+						<div class="row margin">
+							<div class="input-field col s12">
+						    {{form.status}}
+						    <label>Status</label>
+						  </div>
+						</div>
+				  </div>
+
+				  <div id="test-swipe-2" class="col s12">
+				  	 <div class="row margin">
+			      	<div class="input-field col s12">
+						  	{{ form.etiqueta }}
+						  	<label for="etiqueta">Etiqueta</label>
+						  </div>
+			      </div>   
+						<div ng-if="!etiqueta" class='col s12 l10 offset-l1 blue-grey lighten-5'>
+							<div class="row margin">
+									<div class="input-field col s12">
+							  	{{ form.condicion_etiqueta }}
+							  	<label for="condicion_etiqueta">Condicion de la etiqueta</label>
+							  </div>
+							</div>
+							<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto etiqueta dañada</span>
+						        {{ form.foto_etiqueta_antes }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+					  	<div class="row margin">
+					  		<div class="input-field col s12">
+						  		{{ form.acciones_etiqueta }}
+						  		<label for="acciones_etiqueta">Acciones para corregir etiqueta</label>
+						  	</div>
+					  	</div>
+					  	<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto etiqueta reparada</span>
+						        {{ form.foto_etiqueta_despues }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+							<div class="row margin">
+								<div class="input-field col s12">
+							  	{{ form.arreglo_etiqueta_sitio }}
+							  	<label for="arreglo_etiqueta_sitio">Se arreglo etiqueta en Sitio?</label>
+							  </div>
+							</div>
+							<div ng-if='!etiqueta_sitio' class="row margin">
+								<div class="input-field col s12">
+						  		{{ form.motivos_seguro }}
+						  		<label for="motivos_seguro">Porque no se corrigio etiqueta en sitio?</label>
+						  	</div>
+							</div>
+					  </div>
+
+					  <div class="row margin">
+			      	<div class="input-field col s12">
+						  	{{ form.seguro }}
+						  	<label for="seguro">seguro</label>
+						  </div>
+			      </div>   
+						<div ng-if="!seguro" class='col s12 l10 offset-l1 cyan lighten-5'>
+							<div class="row margin">
+									<div class="input-field col s12">
+							  	{{ form.condicion_seguro }}
+							  	<label for="condicion_seguro">Condicion del seguro</label>
+							  </div>
+							</div>
+							<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto seguro dañado</span>
+						        {{ form.foto_seguro_antes }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+					  	<div class="row margin">
+					  		<div class="input-field col s12">
+						  		{{ form.acciones_seguro }}
+						  		<label for="acciones_seguro">Acciones para corregir seguro</label>
+						  	</div>
+					  	</div>
+					  	<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto seguro reparado</span>
+						        {{ form.foto_seguro_despues }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+							<div class="row margin">
+								<div class="input-field col s12">
+							  	{{ form.arreglo_seguro_sitio }}
+							  	<label for="arreglo_seguro_sitio">Se arreglo seguro en Sitio?</label>
+							  </div>
+							</div>
+							<div ng-if='!seguro_sitio' class="row margin">
+								<div class="input-field col s12">
+						  		{{ form.motivos_seguro }}
+						  		<label for="motivos_seguro">Porque no se corrigio seguro en sitio?</label>
+						  	</div>
+							</div>
+					  </div>
+
+					  <div class="row margin">
+			      	<div class="input-field col s12">
+						  	{{ form.pintura }}
+						  	<label for="pintura">pintura</label>
+						  </div>
+			      </div>   
+						<div ng-if="!pintura">
+							<div class="row margin">
+									<div class="input-field col s12">
+							  	{{ form.condicion_pintura }}
+							  	<label for="condicion_pintura">Condicion de la pintura</label>
+							  </div>
+							</div>
+							<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto pintura dañada</span>
+						        {{ form.foto_pintura_antes }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+					  	<div class="row margin">
+					  		<div class="input-field col s12">
+						  		{{ form.acciones_pintura }}
+						  		<label for="acciones_pintura">Acciones para corregir pintura</label>
+						  	</div>
+					  	</div>
+					  	<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto pintura reparada</span>
+						        {{ form.foto_pintura_despues }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+							<div class="row margin">
+								<div class="input-field col s12">
+							  	{{ form.arreglo_pintura_sitio }}
+							  	<label for="arreglo_pintura_sitio">Se arreglo pintura en Sitio?</label>
+							  </div>
+							</div>
+							<div ng-if='!pintura_sitio' class="row margin">
+								<div class="input-field col s12">
+						  		{{ form.motivos_pintura }}
+						  		<label for="motivos_pintura">Porque no se corrigio pintura en sitio?</label>
+						  	</div>
+							</div>
+					  </div>
+
+					  <div class="row margin">
+			      	<div class="input-field col s12">
+						  	{{ form.valvula }}
+						  	<label for="valvula">valvula</label>
+						  </div>
+			      </div>   
+						<div ng-if="!valvula">
+							<div class="row margin">
+									<div class="input-field col s12">
+							  	{{ form.condicion_valvula }}
+							  	<label for="condicion_valvula">Condicion de la valvula</label>
+							  </div>
+							</div>
+							<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto valvula dañada</span>
+						        {{ form.foto_valvula_antes }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+					  	<div class="row margin">
+					  		<div class="input-field col s12">
+						  		{{ form.acciones_valvula }}
+						  		<label for="acciones_valvula">Acciones para corregir valvula</label>
+						  	</div>
+					  	</div>
+					  	<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto valvula reparada</span>
+						        {{ form.foto_valvula_despues }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+							<div class="row margin">
+								<div class="input-field col s12">
+							  	{{ form.arreglo_valvula_sitio }}
+							  	<label for="arreglo_valvula_sitio">Se arreglo valvula en Sitio?</label>
+							  </div>
+							</div>
+							<div ng-if='!valvula_sitio' class="row margin">
+								<div class="input-field col s12">
+						  		{{ form.motivos_valvula }}
+						  		<label for="motivos_valvula">Porque no se corrigio valvula en sitio?</label>
+						  	</div>
+							</div>
+					  </div>
+
+					  <div class="row margin">
+			      	<div class="input-field col s12">
+						  	{{ form.nanometro }}
+						  	<label for="nanometro">nanometro</label>
+						  </div>
+			      </div>   
+						<div ng-if="!nanometro">
+							<div class="row margin">
+									<div class="input-field col s12">
+							  	{{ form.condicion_nanometro }}
+							  	<label for="condicion_nanometro">Condicion de la nanometro</label>
+							  </div>
+							</div>
+							<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto nanometro dañada</span>
+						        {{ form.foto_nanometro_antes }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+					  	<div class="row margin">
+					  		<div class="input-field col s12">
+						  		{{ form.acciones_nanometro }}
+						  		<label for="acciones_nanometro">Acciones para corregir nanometro</label>
+						  	</div>
+					  	</div>
+					  	<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto nanometro reparada</span>
+						        {{ form.foto_nanometro_despues }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+							<div class="row margin">
+								<div class="input-field col s12">
+							  	{{ form.arreglo_nanometro_sitio }}
+							  	<label for="arreglo_nanometro_sitio">Se arreglo nanometro en Sitio?</label>
+							  </div>
+							</div>
+							<div ng-if='!nanometro_sitio' class="row margin">
+								<div class="input-field col s12">
+						  		{{ form.motivos_nanometro }}
+						  		<label for="motivos_nanometro">Porque no se corrigio nanometro en sitio?</label>
+						  	</div>
+							</div>
+					  </div>
+
+					  <div class="row margin">
+			      	<div class="input-field col s12">
+						  	{{ form.peso }}
+						  	<label for="peso">peso</label>
+						  </div>
+			      </div>   
+						<div ng-if="!peso">
+							<div class="row margin">
+									<div class="input-field col s12">
+							  	{{ form.condicion_peso }}
+							  	<label for="condicion_peso">Condicion de la peso</label>
+							  </div>
+							</div>
+							<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto peso dañada</span>
+						        {{ form.foto_peso_antes }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+					  	<div class="row margin">
+					  		<div class="input-field col s12">
+						  		{{ form.acciones_peso }}
+						  		<label for="acciones_peso">Acciones para corregir peso</label>
+						  	</div>
+					  	</div>
+					  	<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto peso reparada</span>
+						        {{ form.foto_peso_despues }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+							<div class="row margin">
+								<div class="input-field col s12">
+							  	{{ form.arreglo_peso_sitio }}
+							  	<label for="arreglo_peso_sitio">Se arreglo peso en Sitio?</label>
+							  </div>
+							</div>
+							<div ng-if='!peso_sitio' class="row margin">
+								<div class="input-field col s12">
+						  		{{ form.motivos_peso }}
+						  		<label for="motivos_peso">Porque no se corrigio peso en sitio?</label>
+						  	</div>
+							</div>
+					  </div>
+
+					  <div class="row margin">
+			      	<div class="input-field col s12">
+						  	{{ form.manguera }}
+						  	<label for="manguera">manguera</label>
+						  </div>
+			      </div>   
+						<div ng-if="!manguera">
+							<div class="row margin">
+									<div class="input-field col s12">
+							  	{{ form.condicion_manguera }}
+							  	<label for="condicion_manguera">Condicion de la manguera</label>
+							  </div>
+							</div>
+							<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto manguera dañada</span>
+						        {{ form.foto_manguera_antes }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+					  	<div class="row margin">
+					  		<div class="input-field col s12">
+						  		{{ form.acciones_manguera }}
+						  		<label for="acciones_manguera">Acciones para corregir manguera</label>
+						  	</div>
+					  	</div>
+					  	<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto manguera reparada</span>
+						        {{ form.foto_manguera_despues }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+							<div class="row margin">
+								<div class="input-field col s12">
+							  	{{ form.arreglo_manguera_sitio }}
+							  	<label for="arreglo_manguera_sitio">Se arreglo manguera en Sitio?</label>
+							  </div>
+							</div>
+							<div ng-if='!manguera_sitio' class="row margin">
+								<div class="input-field col s12">
+						  		{{ form.motivos_manguera }}
+						  		<label for="motivos_manguera">Porque no se corrigio manguera en sitio?</label>
+						  	</div>
+							</div>
+					  </div>
+
+					  <div class="row margin">
+			      	<div class="input-field col s12">
+						  	{{ form.senalamiento }}
+						  	<label for="senalamiento">señalamiento</label>
+						  </div>
+			      </div>   
+						<div ng-if="!senalamiento">
+							<div class="row margin">
+									<div class="input-field col s12">
+							  	{{ form.condicion_senalamiento }}
+							  	<label for="condicion_senalamiento">Condicion del señalamiento</label>
+							  </div>
+							</div>
+							<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto señalamiento dañado</span>
+						        {{ form.foto_senalamiento_antes }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+					  	<div class="row margin">
+					  		<div class="input-field col s12">
+						  		{{ form.acciones_senalamiento }}
+						  		<label for="acciones_senalamiento">Acciones para corregir señalamiento</label>
+						  	</div>
+					  	</div>
+					  	<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto señalamiento reparado</span>
+						        {{ form.foto_senalamiento_despues }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+							<div class="row margin">
+								<div class="input-field col s12">
+							  	{{ form.arreglo_senalamiento_sitio }}
+							  	<label for="arreglo_senalamiento_sitio">Se arreglo señalamiento en Sitio?</label>
+							  </div>
+							</div>
+							<div ng-if='!senalamiento_sitio' class="row margin">
+								<div class="input-field col s12">
+						  		{{ form.motivos_senalamiento }}
+						  		<label for="motivos_senalamiento">Porque no se corrigio señalamiento en sitio?</label>
+						  	</div>
+							</div>
+					  </div>
+						
+						<div class="row margin">
+			      	<div class="input-field col s12">
+						  	{{ form.altura }}
+						  	<label for="altura">altura</label>
+						  </div>
+			      </div>   
+						<div ng-if="!altura">
+							<div class="row margin">
+									<div class="input-field col s12">
+							  	{{ form.condicion_altura }}
+							  	<label for="condicion_altura">Condicion de la altura</label>
+							  </div>
+							</div>
+							<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto altura dañada</span>
+						        {{ form.foto_altura_antes }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+					  	<div class="row margin">
+					  		<div class="input-field col s12">
+						  		{{ form.acciones_altura }}
+						  		<label for="acciones_altura">Acciones para corregir altura</label>
+						  	</div>
+					  	</div>
+					  	<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto altura reparada</span>
+						        {{ form.foto_altura_despues }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+							<div class="row margin">
+								<div class="input-field col s12">
+							  	{{ form.arreglo_altura_sitio }}
+							  	<label for="arreglo_altura_sitio">Se arreglo altura en Sitio?</label>
+							  </div>
+							</div>
+							<div ng-if='!altura_sitio' class="row margin">
+								<div class="input-field col s12">
+						  		{{ form.motivos_altura }}
+						  		<label for="motivos_altura">Porque no se corrigio altura en sitio?</label>
+						  	</div>
+							</div>
+					  </div>
+
+					  <div class="row margin">
+			      	<div class="input-field col s12">
+						  	{{ form.proteccion }}
+						  	<label for="proteccion">proteccion</label>
+						  </div>
+			      </div>   
+						<div ng-if="!proteccion">
+							<div class="row margin">
+									<div class="input-field col s12">
+							  	{{ form.condicion_proteccion }}
+							  	<label for="condicion_proteccion">Condicion de la proteccion</label>
+							  </div>
+							</div>
+							<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto proteccion dañada</span>
+						        {{ form.foto_proteccion_antes }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+					  	<div class="row margin">
+					  		<div class="input-field col s12">
+						  		{{ form.acciones_proteccion }}
+						  		<label for="acciones_proteccion">Acciones para corregir proteccion</label>
+						  	</div>
+					  	</div>
+					  	<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto proteccion reparada</span>
+						        {{ form.foto_proteccion_despues }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+							<div class="row margin">
+								<div class="input-field col s12">
+							  	{{ form.arreglo_proteccion_sitio }}
+							  	<label for="arreglo_proteccion_sitio">Se arreglo proteccion en Sitio?</label>
+							  </div>
+							</div>
+							<div ng-if='!proteccion_sitio' class="row margin">
+								<div class="input-field col s12">
+						  		{{ form.motivos_proteccion }}
+						  		<label for="motivos_proteccion">Porque no se corrigio proteccion en sitio?</label>
+						  	</div>
+							</div>
+					  </div>
+
+					  <div class="row margin">
+			      	<div class="input-field col s12">
+						  	{{ form.limpieza }}
+						  	<label for="limpieza">limpieza</label>
+						  </div>
+			      </div>   
+						<div ng-if="!limpieza">
+							<div class="row margin">
+									<div class="input-field col s12">
+							  	{{ form.condicion_limpieza }}
+							  	<label for="condicion_limpieza">Condicion de la limpieza</label>
+							  </div>
+							</div>
+							<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto limpieza dañada</span>
+						        {{ form.foto_limpieza_antes }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+					  	<div class="row margin">
+					  		<div class="input-field col s12">
+						  		{{ form.acciones_limpieza }}
+						  		<label for="acciones_limpieza">Acciones para corregir limpieza</label>
+						  	</div>
+					  	</div>
+					  	<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto limpieza reparada</span>
+						        {{ form.foto_limpieza_despues }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+							<div class="row margin">
+								<div class="input-field col s12">
+							  	{{ form.arreglo_limpieza_sitio }}
+							  	<label for="arreglo_limpieza_sitio">Se arreglo limpieza en Sitio?</label>
+							  </div>
+							</div>
+							<div ng-if='!limpieza_sitio' class="row margin">
+								<div class="input-field col s12">
+						  		{{ form.motivos_limpieza }}
+						  		<label for="motivos_limpieza">Porque no se corrigio limpieza en sitio?</label>
+						  	</div>
+							</div>
+					  </div>
+
+					  <div class="row margin">
+			      	<div class="input-field col s12">
+						  	{{ form.operable }}
+						  	<label for="operable">operable</label>
+						  </div>
+			      </div>   
+						<div ng-if="!operable">
+							<div class="row margin">
+									<div class="input-field col s12">
+							  	{{ form.condicion_operable }}
+							  	<label for="condicion_operable">Condicion de la operable</label>
+							  </div>
+							</div>
+							<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto operable dañada</span>
+						        {{ form.foto_operable_antes }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+					  	<div class="row margin">
+					  		<div class="input-field col s12">
+						  		{{ form.acciones_operable }}
+						  		<label for="acciones_operable">Acciones para corregir operable</label>
+						  	</div>
+					  	</div>
+					  	<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto operable reparada</span>
+						        {{ form.foto_operable_despues }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+							<div class="row margin">
+								<div class="input-field col s12">
+							  	{{ form.arreglo_operable_sitio }}
+							  	<label for="arreglo_operable_sitio">Se arreglo operable en Sitio?</label>
+							  </div>
+							</div>
+							<div ng-if='!operable_sitio' class="row margin">
+								<div class="input-field col s12">
+						  		{{ form.motivos_operable }}
+						  		<label for="motivos_operable">Porque no se corrigio operable en sitio?</label>
+						  	</div>
+							</div>
+					  </div>
+
+					  <div class="row margin">
+			      	<div class="input-field col s12">
+						  	{{ form.obstruido }}
+						  	<label for="obstruido">obstruido</label>
+						  </div>
+			      </div>   
+						<div ng-if="!obstruido">
+							<div class="row margin">
+									<div class="input-field col s12">
+							  	{{ form.condicion_obstruido }}
+							  	<label for="condicion_obstruido">Condicion de la obstruido</label>
+							  </div>
+							</div>
+							<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto obstruido dañada</span>
+						        {{ form.foto_obstruido_antes }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+					  	<div class="row margin">
+					  		<div class="input-field col s12">
+						  		{{ form.acciones_obstruido }}
+						  		<label for="acciones_obstruido">Acciones para corregir obstruido</label>
+						  	</div>
+					  	</div>
+					  	<div class="row margin">
+								<div class="file-field input-field">
+						      <div class="btn">
+						        <span>Foto obstruido reparada</span>
+						        {{ form.foto_obstruido_despues }}
+						      </div>
+						      <div class="file-path-wrapper">
+						        <input class="file-path validate" type="text">
+						      </div>
+						    </div>
+							</div>
+							<div class="row margin">
+								<div class="input-field col s12">
+							  	{{ form.arreglo_obstruido_sitio }}
+							  	<label for="arreglo_obstruido_sitio">Se arreglo obstruido en Sitio?</label>
+							  </div>
+							</div>
+							<div ng-if='!obstruido_sitio' class="row margin">
+								<div class="input-field col s12">
+						  		{{ form.motivos_obstruido }}
+						  		<label for="motivos_obstruido">Porque no se corrigio obstruido en sitio?</label>
+						  	</div>
+							</div>
+					  </div>
+
+				  </div>
+				  
+				  <div id="test-swipe-3" class="col s12">
+				  	<div class="row margin">
+							<div class="input-field col s12">
+			          {{ form.observaciones}}
+			          <label for="observaciones">Observaciones</label>
+			        </div>
+						</div>
+						
+						<div class="row margin">
+							<div class="input-field col s12">
+						  	{{ form.ultima_reca }}
+						  	<label for="ultima_reca">Ultima Recarga</label>
+						  </div>
+						</div>
+			      
+			      <div class="row margin">
+			      	<div class="input-field col s12">
+						  	{{ form.vencimiento }}
+						  	<label for="vencimiento">Vencimiento</label>
+						  </div>
+			      </div>
+
+			      <div class="row margin">
+							<input class="" type="submit" value="Guardar">
+						</div>
+				  </div>
+				</div>
+			</div>
+			
+		</form>
+	</div>
+{% endblock %}
+
+ {% block extraJs %}    
+	<script type="text/javascript">
+	$('select').material_select();
+	$('.datepicker').pickadate({
+		monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+		monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+		weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+		weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+		format: 'd/mm/yyyy',
+		today: 'Hoy',
+		clear: 'Limpiar',
+		close: 'Cerrar',
+	    //selectMonths: true, // Creates a dropdown to control month
+	    //selectYears: 15, // Creates a dropdown of 15 years to control year
+	    min: new Date(2017,01,01),
+  		max: new Date(2017,12,31)
+	  });
+
+	 // Swipeable Tabs Demo Init
+    if ($('#tabs-swipe-demo').length) {
+      $('#tabs-swipe-demo').tabs({ 'swipeable': true, 'responsiveThreshold' : 'Infinity' });
+    }
+	      
+	</script>
+ {% endblock  %}
+  
