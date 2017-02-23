@@ -8,10 +8,27 @@
 {% block content %} 
 
 <!-- Dropdown Structure -->
-<div class="navbar-fixed">
+<div class="">
+	<ul id="dropdown1" class="dropdown-content">
+	  <li><a href="#!">Cambiar Contraseña</a></li>
+	  <li><a href="#!">two</a></li>
+	  <li class="divider"></li>
+	  <li><a href="{% url 'inspecciones:logout' %}">Salir</a></li>
+	</ul>
+	<ul class="side-nav" id="mobile-demo">
+    <li><a href="sass.html">Sass</a></li>
+    <li><a href="badges.html">Components</a></li>
+    <li><a href="collapsible.html">Javascript</a></li>
+    <li><a href="mobile.html">Mobile</a></li>
+  </ul>
   <nav>
-    <div class="nav-wrapper blue-grey darken-4">
+    <div class="nav-wrapper  orange darken-1">
       <a href="#!" class="brand-logo">CACESI</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+      <!-- Dropdown Trigger -->
+      <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{user.first_name}} {{user.last_name}} <i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
     </div>
   </nav>
 </div>
@@ -29,7 +46,7 @@
 
 <div class="section"></div>
 
-	<div class = "container" >
+	<div class = "container z-depth-4" >
 		<form method="post" action="">
 			{% csrf_token %}
 			<div class="row">
@@ -44,6 +61,7 @@
 				  <p></p>
 				  	<div class="row margin">
 							<div class="input-field col s12">
+							 <i class="material-icons prefix">account_circle</i>
 						    {{form.empleado}}
 						    <label>Empleado</label>
 						  </div>
@@ -51,6 +69,7 @@
 
 						<div class="row margin">
 							<div class="input-field col s12">
+							 <i class="material-icons prefix">battery_full</i>
 						    {{form.extintor}}
 						    <label>Extintor</label>
 						  </div>
@@ -58,13 +77,15 @@
 							
 						<div class="row margin">
 						 	<div class="input-field col s12">
-						  	{{ form.fecha_revision }}
+						 	<i class="material-icons prefix">date_range</i>
+						 	{{ form.fecha_revision }}
 						  	<label for="fecha_revision">Fecha Revision</label>
 						  </div>
 						</div>
 
 						<div class="row margin">
 							<div class="input-field col s12">
+							<i class="material-icons prefix">build</i>
 						    {{form.status}}
 						    <label>Status</label>
 						  </div>
@@ -792,6 +813,7 @@
 				  <div id="test-swipe-3" class="col s12">
 				  	<div class="row margin">
 							<div class="input-field col s12">
+								<i class="material-icons prefix">assignment</i>
 			          {{ form.observaciones}}
 			          <label for="observaciones">Observaciones</label>
 			        </div>
@@ -799,6 +821,7 @@
 						
 						<div class="row margin">
 							<div class="input-field col s12">
+							<i class="material-icons prefix">date_range</i>
 						  	{{ form.ultima_reca }}
 						  	<label for="ultima_reca">Ultima Recarga</label>
 						  </div>
@@ -806,13 +829,16 @@
 			      
 			      <div class="row margin">
 			      	<div class="input-field col s12">
+			      		<i class="material-icons prefix">date_range</i>
 						  	{{ form.vencimiento }}
 						  	<label for="vencimiento">Vencimiento</label>
 						  </div>
 			      </div>
 
 			      <div class="row margin">
-							<input class="" type="submit" value="Guardar">
+				      <button class="btn waves-effect waves-light blue-grey darken-4 right" type="submit" name="action">Guardar
+						    <i class="material-icons right">send</i>
+						  </button>
 						</div>
 				  </div>
 				</div>
@@ -839,6 +865,8 @@
 	    min: new Date(2017,01,01),
   		max: new Date(2017,12,31)
 	  });
+
+		$(".button-collapse").sideNav(); 
 
 	 // Swipeable Tabs Demo Init
     if ($('#tabs-swipe-demo').length) {

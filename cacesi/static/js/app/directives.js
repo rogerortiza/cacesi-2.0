@@ -88,43 +88,43 @@ angular.module('cacesi')
 								if(areas.indexOf(value.extintor.area) === -1)
 									areas.push(value.extintor.area);
 
-								if(value.altura === true)
+								if(value.altura === false)
 									anomalias.push({"anomalia":"altura", "extintores": 1});
 
-								if(value.etiqueta === true)
+								if(value.etiqueta === false)
 									anomalias.push({"anomalia":"etiqueta", "extintores": 1});
 
-								if(value.limpieza === true)
+								if(value.limpieza === false)
 									anomalias.push({"anomalia":"limpieza", "extintores": 1});
 
-								if(value.manguera === true)
+								if(value.manguera === false)
 									anomalias.push({"anomalia":"manguera", "extintores": 1});	
 
-								if(value.nanometro === true)
+								if(value.nanometro === false)
 									anomalias.push({"anomalia":"nanometro", "extintores": 1});
 
-								if(value.obstruido === true)
+								if(value.obstruido === false)
 									anomalias.push({"anomalia":"obstruido", "extintores": 1});	
 
-								if(value.operable === true)
+								if(value.operable === false)
 									anomalias.push({"anomalia":"operable", "extintores": 1});			
 					
-								if(value.peso == true)
+								if(value.peso == false)
 									anomalias.push({"anomalia":"peso", "extintores": 1});
 
-								if(value.pintura === true)
+								if(value.pintura === false)
 									anomalias.push({"anomalia":"pintura", "extintores": 1});		
 
-								if(value.proteccion === true)
+								if(value.proteccion === false)
 									anomalias.push({"anomalia":"proteccion", "extintores": 1});	
 
-								if(value.seguro === true)
+								if(value.seguro === false)
 									anomalias.push({"anomalia":"seguro", "extintores": 1});	
 
-								if(value.senalamiento === true)
+								if(value.senalamiento === false)
 									anomalias.push({"anomalia":"senalamiento", "extintores": 1});	
 
-								if(value.valvula === true)
+								if(value.valvula === false)
 									anomalias.push({"anomalia":"valvula", "extintores": 1});	
 							}		
 						}				

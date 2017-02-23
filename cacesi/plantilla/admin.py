@@ -4,7 +4,7 @@ from .models import Empleados
 
 # Register your models here.
 class EmpleadosAdmin(admin.ModelAdmin):
-	list_display = ('nombre', 'apellidos', 'email', 'foto_empleado')
+	list_display = ('id', 'nombre', 'apellidos', 'email', 'foto_empleado')
 
 	def foto_empleado(self, obj):
 		url = obj.foto.url

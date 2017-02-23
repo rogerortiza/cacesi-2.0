@@ -1,7 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Empleados(models.Model):
+	PERFILES = (
+			(1, 'Inspector'),
+			(2, 'Supervisor'),
+			(3, 'Capacitador')
+		)
+
 	class Meta:
 		verbose_name_plural='Empleados'
 
@@ -18,6 +25,8 @@ class Empleados(models.Model):
 	email = models.EmailField()
 	fecha_alta = models.DateTimeField()
 	foto = models.ImageField(upload_to = "static/images/team")
+	usuario = models.OneToOneField(User, blank = True, null=True, on_delete = models.CASCADE )
+	perfil =  models.IntegerField(choices = PERFILES)
 
 	def __str__(self):
 		return self.nombre+' '+self.apellidos

@@ -4,10 +4,20 @@ from django import forms
 from .models import Extintores
 import datetime
 
+class LoginEmpleadoForm(forms.Form):
+	username = forms.CharField( max_length = 20)
+	password = forms.CharField( max_length = 20, widget = forms.PasswordInput() )
+
+	def __init__(self, *args, **kwargs):
+		super(LoginEmpleadoForm, self).__init__(*args, **kwargs)
+		self.fields['username'].widget.attrs.update( {'id': 'username_login', 'class': '' } )
+		self.fields['password'].widget.attrs.update( {'id': 'password_login', 'class': '' } )
+
+
 class NewInspeccionExtintorForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(NewInspeccionExtintorForm, self).__init__(*args, **kwargs)
-		self.fields['fecha_revision'].widget.attrs.update( {'class': 'datepicker' } )
+		self.fields['fecha_revision'].widget.attrs.update( {'class': 'black-text', 'disabled' : 'disabled' } )
 		self.fields['etiqueta'].widget.attrs.update( {'id' : 'etiqueta', 'class': '', 'ng-model' : 'etiqueta', 'ng-init' : 'etiqueta = true' } )
 		self.fields['condicion_etiqueta'].widget.attrs.update( {'id' : 'condicion_etiqueta', 'class': 'materialize-textarea' } )
 		self.fields['acciones_etiqueta'].widget.attrs.update( {'id' : 'acciones_etiqueta', 'class': 'materialize-textarea' } )
