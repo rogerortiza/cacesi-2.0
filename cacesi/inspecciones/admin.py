@@ -1,7 +1,10 @@
 from django.contrib import admin
-from .models import Extintores
+from .models import Asignaciones, Extintores
 
 # Register your models here.
+class AsignacionesAdmin(admin.ModelAdmin):
+	list_display = ('id', 'area', 'empleado', 'mes') 
+
 class ExtintoresAdmin(admin.ModelAdmin):
 	fieldsets = (
 			(None, {'fields' : ('empleado', 'extintor', 'fecha_revision', 'status')}),
@@ -32,7 +35,7 @@ class ExtintoresAdmin(admin.ModelAdmin):
 			('obstruido', {
 				'fields' : ('obstruido', 'condicion_obstruido', 'foto_obstruido_antes', 'acciones_obstruido', 'foto_obstruido_despues', 'arreglo_obstruido_sitio', 'motivos_obstruido')}),
 			('Final', {
-				'fields': ('observaciones', 'ultima_reca', 'vencimiento', 'foto')})
+				'fields': ('observaciones', 'foto')})
 		)
 
 	list_display = ('id', 'extintor', 'cliente', 'area', 'empleado', 'fecha_revision')
@@ -41,6 +44,8 @@ class ExtintoresAdmin(admin.ModelAdmin):
 		return obj.extintor.area
 
 	def cliente(self, obj):
-		return obj.extintor.cliente
+		return obj.extintor.area.cliente
 
+admin.site.register(Asignaciones, AsignacionesAdmin)
 admin.site.register(Extintores, ExtintoresAdmin)
+

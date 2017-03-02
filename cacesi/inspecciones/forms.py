@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from django import forms
-from .models import Extintores
+from .models import Asignaciones, Extintores
+from inventario_terceros.models import Extintores as ExtintoresTerceros
 import datetime
 
 class LoginEmpleadoForm(forms.Form):
@@ -15,9 +16,13 @@ class LoginEmpleadoForm(forms.Form):
 
 
 class NewInspeccionExtintorForm(forms.ModelForm):
+	#extintor = forms.ModelChoiceField(queryset=ExtintoresTerceros.objects.filter(area=5))
 	def __init__(self, *args, **kwargs):
+		user = kwargs.pop('user', None)
+		area = Asignaciones.objects.get(empleado = user.empleados.id)
 		super(NewInspeccionExtintorForm, self).__init__(*args, **kwargs)
-		self.fields['fecha_revision'].widget.attrs.update( {'class': 'black-text', 'disabled' : 'disabled' } )
+		self.fields['extintor'].queryset = ExtintoresTerceros.objects.filter(area=area.area)
+		self.fields['fecha_revision'].widget.attrs.update( {'class': 'black-text' } )
 		self.fields['etiqueta'].widget.attrs.update( {'id' : 'etiqueta', 'class': '', 'ng-model' : 'etiqueta', 'ng-init' : 'etiqueta = true' } )
 		self.fields['condicion_etiqueta'].widget.attrs.update( {'id' : 'condicion_etiqueta', 'class': 'materialize-textarea' } )
 		self.fields['acciones_etiqueta'].widget.attrs.update( {'id' : 'acciones_etiqueta', 'class': 'materialize-textarea' } )
@@ -82,13 +87,11 @@ class NewInspeccionExtintorForm(forms.ModelForm):
 		self.fields['condicion_obstruido'].widget.attrs.update( {'id' : 'condicion_obstruido', 'class': 'materialize-textarea' } )
 		self.fields['acciones_obstruido'].widget.attrs.update( {'id' : 'acciones_obstruido', 'class': 'materialize-textarea' } )
 		self.fields['arreglo_obstruido_sitio'].widget.attrs.update( {'id' : 'arreglo_obstruido_sitio', 'class': '', 'ng-model' : 'obstruido_sitio', 'ng-init' : 'obstruido_sitio = true' } )
-		self.fields['motivos_obstruido'].widget.attrs.update( {'id' : 'motivos_obstruido', 'class': 'materialize-textarea' } )
-		
+		self.fields['motivos_obstruido'].widget.attrs.update( {'id' : 'motivos_obstruido', 'class': 'materialize-textarea' } )	
 		self.fields['observaciones'].widget.attrs.update( {'id' : 'observaciones', 'class': 'materialize-textarea' } )
-		self.fields['ultima_reca'].widget.attrs.update( {'class': 'datepicker' } )
-		self.fields['vencimiento'].widget.attrs.update( {'class': 'datepicker' } )
-
+		#self.fields['ultima_reca'].widget.attrs.update( {'class': 'datepicker' } )
+		#self.fields['vencimiento'].widget.attrs.update( {'class': 'datepicker' } )
 
 	class Meta:
 		model = Extintores
-		fields = ('__all__')
+		exclude = ('empleado', )

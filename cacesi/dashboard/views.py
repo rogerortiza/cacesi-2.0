@@ -39,8 +39,15 @@ class AreasClass(LoginRequiredMixin, View):
 class DashboardClass(LoginRequiredMixin, View):
 	login_url = 'dashboard:login'
 	def get(self, request, *args, **kwargs):
-		data = {'noExtintores' : 40}
-		return render( request, 'dashboard/index.html', data)
+		try:
+			rfc = self.request.user.clientes.rfc
+		except:
+			logout_django(request)
+			return redirect('dashboard:login')
+		else:
+			data = {'noExtintores' : 40}
+			return render( request, 'dashboard/index.html', data)
+		
 
 class ExtintoresClass(LoginRequiredMixin, View):
 	login_url = 'dashboard:login'

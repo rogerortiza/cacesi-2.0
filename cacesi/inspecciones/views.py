@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as login_django, logout as logout_django
 from django.contrib.auth.decorators import login_required
@@ -5,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import CreateView, View
-from .models import Extintores
+from .models import Asignaciones, Extintores
 from .forms import LoginEmpleadoForm, NewInspeccionExtintorForm
 
 # Create your views here.
@@ -25,16 +26,14 @@ class LoginClass(View):
 		user = authenticate( username = username_post , password = password_post)
 		if user is not None:
 			try:
-				me = User.objects.get(username=user)
-				if me.empleados.perfil == 1:
-					login_django(request, user)
-					return redirect('inspecciones:new')
-				else:
-					self.message = "Usuario no tiene permisos de inspeccion"
-			except Exception as e:
-				pass
+				me = User.objects.get(username = user)
+				perfil = me.empleados.perfil
+			except:
+				logout_django(request)
+				return redirect('inspecciones:login')
 			else:
-				pass
+				login_django( request, user)
+				return redirect('inspecciones:new')
 		else:
 			self.message = "Username o password incorrectos"
 		return render(request, self.template, self.get_context() )
@@ -48,6 +47,17 @@ class CreateInspeccionExtintor(LoginRequiredMixin, CreateView):
 	template_name = 'inspecciones/new.html'
 	model = Extintores
 	form_class = NewInspeccionExtintorForm
+
+	def get_form_kwargs(self, **kwargs):
+		form_kwargs = super(CreateInspeccionExtintor, self).get_form_kwargs(**kwargs)
+		form_kwargs['user'] =  self.request.user
+		return form_kwargs
+
+	def form_valid(self, form):
+		self.object = form.save(commit = False)
+		self.object.empleado_id = self.request.user.empleados.id
+		self.object.save()
+		return HttpResponseRedirect( self.get_success_url() ) 
 
 @login_required( login_url = 'inspecciones:login' )
 def logout(request):

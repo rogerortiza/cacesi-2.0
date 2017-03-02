@@ -1,15 +1,41 @@
 from django.db import models
+from django.db.models import Q
 from django.utils import timezone
 from inventario_terceros.models import Extintores
+from planteles.models import Areas
 from plantilla.models  import Empleados
 
 # Create your models here.
+class Asignaciones(models.Model):
+	MESES = (
+		('01', 'Enero'),
+		('02', 'Febero'),
+		('03', 'Marzo')
+	)
+
+	class Meta:
+		verbose_name='Asignacion'
+		verbose_name_plural='Asignaciones'
+		unique_together = (('area', 'empleado', 'mes', 'año'))
+
+	id = models.AutoField(primary_key = True)
+	area = models.ForeignKey(Areas, on_delete =  models.CASCADE)
+	empleado = models.ForeignKey(Empleados, on_delete =  models.CASCADE)
+	mes = models.CharField(max_length = 10, choices=MESES)
+	año = models.CharField(max_length = 4, default = timezone.now().year)
+	fecha_asignacion = models.DateField(default = timezone.now)
+
+	def __str__(self):
+		return self.mes
+
 class Extintores(models.Model):
 	STATUS = [
 		('En su lugar', 'En su lugar'),
 		('No Encontrado', 'No Encontrado'),
 		('Reemplazado por caducidad', 'Reemplazado por caducidad'),
-		('Reemplazado por falta de presion', 'Reemplazado por falta de presion')
+		('Reemplazado por daño', 'Reemplazado por daño'),
+		('Reemplazado por falta de presion', 'Reemplazado por falta de presion'),
+		('Sin acceso al area', 'Sin acceso al area')
 	]
 
 	class Meta:
@@ -112,8 +138,6 @@ class Extintores(models.Model):
 	arreglo_obstruido_sitio = models.BooleanField(blank = True)
 	motivos_obstruido = models.TextField(blank = True)
 	observaciones = models.TextField()
-	ultima_reca = models.DateField("Ultima Recarga")
-	vencimiento = models.DateField(default = timezone.now)
 	foto = models.ImageField(upload_to="static/images/inspecciones/observaciones", blank = True)
 
 	def __str__(self):
