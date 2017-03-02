@@ -14,7 +14,8 @@
     	
     	getInfoService.getInfoByIdCliente($scope.clienteid, 'inspeccion_extintores').then(function(data) {
 	    	areasTodas = [];
-	      $scope.cliente = data.data[0].extintor.cliente;
+	      $scope.cliente = data.data[0].extintor;
+	      console.log($scope.cliente);
 	      $scope.areaSelected = "Areas";
 	      $scope.mesesFull = [];
 	      $scope.mesSelected = {'id' : 'Meses', 'name' : 'Meses'};

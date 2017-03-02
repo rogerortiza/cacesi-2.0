@@ -7,4 +7,4 @@ class ExtintoresViewSet(viewsets.ModelViewSet):
 	serializer_class = ExtintoresSerializer
 
 	def get_queryset(self):
-		return self.queryset.filter(extintor__cliente_id = self.kwargs['cliente_pk'])
+		return self.queryset.filter(extintor__area__cliente_id = self.kwargs['cliente_pk'])
