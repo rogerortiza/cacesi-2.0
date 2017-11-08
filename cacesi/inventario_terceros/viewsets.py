@@ -1,4 +1,4 @@
-from rest_framework import viewsets	
+from rest_framework import viewsets
 from .serializers import ExtintoresTercerosSerializer
 from .models import Extintores
 
@@ -8,8 +8,6 @@ class ExtintoresTercerosViewSet(viewsets.ModelViewSet):
 
 	def get_queryset(self):
 		if 'cliente_pk' in self.kwargs:
-			param = self.kwargs['cliente_pk']
+			return self.queryset.filter(area__cliente_id = self.kwargs['cliente_pk'])
 		else:
-			param = 1
-
-		return self.queryset.filter(cliente_id = param)
+			return self.queryset

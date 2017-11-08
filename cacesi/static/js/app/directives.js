@@ -7,7 +7,7 @@ angular.module('cacesi')
 			restrict : 'E',
 			scope : {
 				area : '=',
-				mes : '=', 
+				mes : '=',
 				inspecciones : '='
 			},
 			controller : ['$scope', function($scope) {
@@ -19,7 +19,7 @@ angular.module('cacesi')
 				    else {
 				    	 areaFilter($scope.area, $scope.mes, $scope.inspecciones);
 				    }*/
-				   
+
     		}, true);
 
 				$('ul.tabs').tabs();
@@ -67,7 +67,7 @@ angular.module('cacesi')
 					    .color("color")
 					    .resize(true)
 					    .draw()
-				}	
+				}
 
 				var areaFilter = function(areaSelected, mesSelected, data) {
 	      	var areas = [];
@@ -98,36 +98,36 @@ angular.module('cacesi')
 									anomalias.push({"anomalia":"limpieza", "extintores": 1});
 
 								if(value.manguera === false)
-									anomalias.push({"anomalia":"manguera", "extintores": 1});	
+									anomalias.push({"anomalia":"manguera", "extintores": 1});
 
 								if(value.nanometro === false)
 									anomalias.push({"anomalia":"nanometro", "extintores": 1});
 
 								if(value.obstruido === false)
-									anomalias.push({"anomalia":"obstruido", "extintores": 1});	
+									anomalias.push({"anomalia":"obstruido", "extintores": 1});
 
 								if(value.operable === false)
-									anomalias.push({"anomalia":"operable", "extintores": 1});			
-					
+									anomalias.push({"anomalia":"operable", "extintores": 1});
+
 								if(value.peso == false)
 									anomalias.push({"anomalia":"peso", "extintores": 1});
 
 								if(value.pintura === false)
-									anomalias.push({"anomalia":"pintura", "extintores": 1});		
+									anomalias.push({"anomalia":"pintura", "extintores": 1});
 
 								if(value.proteccion === false)
-									anomalias.push({"anomalia":"proteccion", "extintores": 1});	
+									anomalias.push({"anomalia":"proteccion", "extintores": 1});
 
 								if(value.seguro === false)
-									anomalias.push({"anomalia":"seguro", "extintores": 1});	
+									anomalias.push({"anomalia":"seguro", "extintores": 1});
 
 								if(value.senalamiento === false)
-									anomalias.push({"anomalia":"senalamiento", "extintores": 1});	
+									anomalias.push({"anomalia":"senalamiento", "extintores": 1});
 
 								if(value.valvula === false)
-									anomalias.push({"anomalia":"valvula", "extintores": 1});	
-							}		
-						}				
+									anomalias.push({"anomalia":"valvula", "extintores": 1});
+							}
+						}
 					});
 
 					var  noAreas = [
@@ -153,7 +153,7 @@ angular.module('cacesi')
 					makeDonutGraph('Observaciones','observaciones', noObseraciones);
 					makeBarGraph('Anomalias', 'kaka', anomalias)
 					makeBarGraph('Status', 'status', noStatus)
-				}	
+				}
 			}],
 		};
 	})
@@ -169,5 +169,19 @@ angular.module('cacesi')
 					$scope.areasByCliente = data.data;
 				})
 			}],
-		}
+		};
+	})
+	.directive('extintoresCliente', function() {
+		return {
+			templateUrl : '/dashboard/extintores',
+			restrict : 'EA',
+			scope : {
+				cliente : '='
+			},
+			controller : ['$scope', 'getInfoService', function($scope, getInfoService) {
+				getInfoService.getInfoByIdCliente($scope.cliente, 'extintores_terceros').then(function(data) {
+					$scope.extintoresByCliente = data.data;
+				})
+			}],
+		};
 	})

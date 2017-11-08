@@ -3,7 +3,6 @@ from .models import Extintores
 
 class ExtintoresTercerosSerializer(serializers.ModelSerializer):
 	area = serializers.StringRelatedField()
-	cliente = serializers.StringRelatedField()
 	foto = serializers.SerializerMethodField('get_foto_url')
 
 	def get_foto_url(self, obj):

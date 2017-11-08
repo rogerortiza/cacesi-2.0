@@ -56,7 +56,7 @@
       <div class="">
         <a href="" ng-click="showPage = 'first'" class="lineLink"><i class="material-icons">home</i> Home</a>
         <a href="" ng-click="showPage = 'second'" class="lineLink"><i class="material-icons">map</i> Areas</a>
-        <a href="" class="lineLink"><i class="material-icons">battery_std</i>Extintores</a>
+        <a href="" ng-click="showPage = 'third'" class="lineLink"><i class="material-icons">battery_std</i>Extintores</a>
         <a href="" class="lineLink"><i class="material-icons">description</i>Reportes</a>
         <a href="" class="lineLink"><i class="material-icons">comment</i>Comentarios</a>
         <a href="" class="lineLink"><i class="material-icons">add_alert</i>Avisos</a>
@@ -67,6 +67,7 @@
     <div class="col s12 m9 l10 offset-m3 offset-l2 white blue-grey-text text-darken-3 min-page ">
       <inspeccion-extintores ng-if="showPage == 'first'" area="areaSelected" mes = "mesSelected" inspecciones = "inspeccionesTodas" ></inspeccion-extintores>
       <areas-cliente ng-if="showPage == 'second'" cliente="clienteid" ></areas-cliente>
+      <extintores-cliente ng-if="showPage == 'third'" cliente="clienteid" ></extintores-cliente>
     </div>
   </div>
 </div>
