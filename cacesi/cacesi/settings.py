@@ -23,9 +23,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '6r9+wca5_z$+6v89rak34o@+(9%!+)wfw3dti+!0z97b0#rn^v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', True)
+if DEBUG in ['OFF', 'Off', 'off', 'NO', 'No', 'no', 'FALSE', 'False', 'false', '0', '']:
+    DEBUG = False
+else:
+    DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'cacesi.herokuapp.com',
+    'localhost',
+    'localhost:8000'
+]
 
 
 # Application definition
@@ -127,10 +135,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+
 
 # Google API Key
 GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyBCw4m8S-72kHP3xOJyHIz2-GeXdhcKCvM'
