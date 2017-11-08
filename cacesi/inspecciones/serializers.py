@@ -13,6 +13,11 @@ class ExtintorSerializer(serializers.ModelSerializer):
 class ExtintoresSerializer(serializers.ModelSerializer):
 	empleado = serializers.StringRelatedField()
 	extintor = ExtintorSerializer()
+	foto = serializers.SerializerMethodField('get_foto_url')
+
+	def get_foto_url(self, obj):
+		return '%s' % (obj.foto)
+
 
 	class Meta:
 		model = Extintores
