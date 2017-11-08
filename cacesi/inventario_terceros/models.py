@@ -33,7 +33,7 @@ class Extintores(models.Model):
 	capacidad = models.CharField(max_length = 140, choices = CAPACIDAD)
 	ultima_reca = models.DateField("Ultima Recarga", default = timezone.now)
 	vencimiento = models.DateField()
-	foto = models.ImageField(upload_to="static/images/extintores")
+	foto = models.ImageField(upload_to="static/images/extintores", blank=True)
 
 	def save(self, *args, **kwargs):
 		self.vencimiento = self.ultima_reca.replace(timezone.now().year + 1)

@@ -1,5 +1,7 @@
+import datetime
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 class Empleados(models.Model):
@@ -18,12 +20,12 @@ class Empleados(models.Model):
 	edad = models.IntegerField()
 	direccion = models.CharField(max_length = 140)
 	ciudad = models.CharField(max_length = 140)
-	estado = models.CharField(max_length = 140)
+	estado = models.CharField(max_length = 140, default="Durango")
 	cp = models.IntegerField()
-	telefono =models.CharField(max_length = 10)
+	telefono =models.CharField(max_length = 10, blank=True)
 	celular = models.CharField(max_length = 10)
 	email = models.EmailField()
-	fecha_alta = models.DateTimeField()
+	fecha_alta = models.DateTimeField(default=timezone.now)
 	foto = models.ImageField(upload_to = "static/images/team")
 	usuario = models.OneToOneField(User, blank = True, null=True, on_delete = models.CASCADE )
 	perfil =  models.IntegerField(choices = PERFILES)

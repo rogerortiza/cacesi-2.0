@@ -14,12 +14,12 @@
       <div class="nav-wrapper blue-grey darken-4">
         <a href="#!" class="brand-logo">CACESI</a>
         <ul class="right hide-on-med-and-down">
-          <li class="littleRight"> 
-            <select class="browser-default blue-grey darken-4 ownSelect" ng-options="area for area in areasTodas track by area" 
+          <li class="littleRight">
+            <select class="browser-default blue-grey darken-4 ownSelect" ng-options="area for area in areasTodas track by area"
            ng-model="areaSelected">
             </select>
           </li>
-          <li class="littleRight"> 
+          <li class="littleRight">
              <select name="mes" id="mes"
               ng-options="mes.name for mes in mesesFull track by mes.id"
               ng-model="mesSelected" class="browser-default blue-grey darken-4  ownSelect">
@@ -44,12 +44,12 @@
             <ul id='dropdown1' class='dropdown-content blue-grey darken-4 white-text'>
               <li><a href="#!">Actualizar Cuenta</a></li>
               <li><a href="#!">Cambiar contraseña</a></li>
-              <li><a href="#!">Salir</a></li>
+              <li><a href="{% url 'dashboard:logout' %}">Salir</a></li>
             </ul>
 
-            <div class=""><a class='dropdown-button' href='#' data-activates='dropdown1'> Colegio La Paz <i class="material-icons">new_releases</i></a></div>
-       
-          </div>   
+            <div class=""><a class='dropdown-button' href='#' data-activates='dropdown1'> {{user.clientes.nombre}} <i class="material-icons">new_releases</i></a></div>
+
+          </div>
         </div>
       </div>
 
