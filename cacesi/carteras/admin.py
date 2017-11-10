@@ -1,8 +1,15 @@
 from django.contrib import admin
-from .models import Clientes
+from .models import Clientes, Contactos_Proveedores, Proveedores
 
 # Register your models here.
+class Contactos_ProveedoresInline(admin.StackedInline):
+    model = Contactos_Proveedores
+
+@admin.register(Clientes)
 class ClientesAdmin(admin.ModelAdmin):
 	list_display = ('id', 'nombre', 'email')
 
-admin.site.register(Clientes, ClientesAdmin)
+@admin.register(Proveedores)
+class ProveedoresAdmin(admin.ModelAdmin):
+	list_display = ('id', 'nombre', 'giro', 'telefono')
+	inlines = [Contactos_ProveedoresInline,]
