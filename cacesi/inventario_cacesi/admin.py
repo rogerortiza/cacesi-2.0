@@ -21,7 +21,7 @@ class ProductosAdmin(ImportExportModelAdmin):
     def en_existencia(self, obj):
         stockMaximo = obj.stock_maximo
         stockMinimo = round(stockMaximo*.25)
-        styleUntis = "style='background-color:greenyellow;" if stockMinimo <= obj.existencia else "style='background-color:red;color:white;"
+        styleUntis = "style='background-color:greenyellow;" if obj.existencia > stockMinimo else "style='background-color:red;color:white;"
         return format_html("<div "+styleUntis+"display:inline-block;width:25px;text-align:center;'>"+str(obj.existencia)+"</div>")
     """
         def foto(self, obj):
