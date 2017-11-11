@@ -20,3 +20,6 @@ class Productos(models.Model):
     existencia = models.IntegerField(blank=True, null=True)
     exposicion = models.IntegerField(blank=True, null=True)
     fecha_alta = models.DateField(default=datetime.datetime.today)
+
+    def __str__(self):
+        return self.nombre
