@@ -16,6 +16,7 @@ class Clientes(models.Model):
 	codigo = models.CharField(max_length = 20)
 	giro = models.CharField(max_length = 140)
 	calle = models.CharField(max_length = 140)
+	colonia = models.CharField(blank=True, max_length=100)
 	municipio = models.CharField(max_length = 140)
 	estado = models.CharField(max_length = 60)
 	pais = models.CharField(max_length = 60, default="Mexico")
@@ -50,6 +51,7 @@ class Proveedores(models.Model):
 	facebook = models.CharField(blank=True, max_length=100)
 	twitter = models.CharField(blank=True, max_length=100)
 	fecha_registro = models.DateField(default=datetime.datetime.today)
+	position = GeopositionField(blank = True)
 
 	def __str__(self):
 		return self.nombre
@@ -66,3 +68,6 @@ class Contactos_Proveedores(models.Model):
 	celular = models.CharField(blank=True, max_length=12)
 	email = models.EmailField(blank = True)
 	fecha_alta = models.DateField(default=datetime.datetime.today)
+
+	def __str__(self):
+		return self.nombre

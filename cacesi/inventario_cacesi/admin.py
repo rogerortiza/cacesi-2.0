@@ -12,5 +12,7 @@ class ProductosResource(resources.ModelResource):
 
 @admin.register(Productos)
 class ProductosAdmin(ImportExportModelAdmin):
-    list_display = ('id', 'modelo', 'nombre', 'proveedor')
+    list_display = ('id', 'modelo', 'nombre', 'categoria', 'proveedor', 'precio_proveedor', 'existencia')
+    list_filter = ('proveedor','categoria',)
+    search_fields = ('nombre', 'clave',)
     resource_class = ProductosResource
