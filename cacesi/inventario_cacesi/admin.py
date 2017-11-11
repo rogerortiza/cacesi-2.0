@@ -13,12 +13,12 @@ class ProductosResource(resources.ModelResource):
 
 @admin.register(Productos)
 class ProductosAdmin(ImportExportModelAdmin):
-    list_display = ('id', 'modelo', 'nombre', 'categoria', 'proveedor', 'precio_proveedor', 'existencia_aviso')
+    list_display = ('id', 'modelo', 'nombre', 'categoria', 'proveedor', 'precio_proveedor', 'en_existencia')
     list_filter = ('proveedor','categoria',)
     search_fields = ('nombre', 'clave',)
     resource_class = ProductosResource
 
-    def existencia_aviso(self, obj):
+    def en_existencia(self, obj):
         stockMaximo = obj.stock_maximo
         stockMinimo = round(stockMaximo*.25)
         styleUntis = "style='background-color:greenyellow;" if stockMinimo <= obj.existencia else "style='background-color:red;color:white;"
