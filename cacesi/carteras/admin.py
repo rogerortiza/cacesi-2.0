@@ -2,8 +2,9 @@ from django.contrib import admin
 from .models import Clientes, Contactos_Proveedores, Proveedores
 
 # Register your models here.
-class Contactos_ProveedoresInline(admin.StackedInline):
+class Contactos_ProveedoresInline(admin.TabularInline):
     model = Contactos_Proveedores
+    can_delete = False
 
 @admin.register(Clientes)
 class ClientesAdmin(admin.ModelAdmin):

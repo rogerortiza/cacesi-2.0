@@ -26,6 +26,7 @@ class Productos(models.Model):
     stock_minimo = models.IntegerField(blank=True, null=True)
     existencia = models.IntegerField(blank=True, null=True)
     exposicion = models.IntegerField(blank=True, null=True)
+    foto = models.ImageField(blank = True, upload_to="static/images/productos")
     fecha_alta = models.DateField(default=datetime.datetime.today)
 
     def __str__(self):

@@ -16,17 +16,17 @@ class Clientes(models.Model):
 	codigo = models.CharField(max_length = 20)
 	giro = models.CharField(max_length = 140)
 	calle = models.CharField(max_length = 140)
-	colonia = models.CharField(blank=True, max_length=100)
+	colonia = models.CharField(max_length=100)
 	municipio = models.CharField(max_length = 140)
 	estado = models.CharField(max_length = 60)
 	pais = models.CharField(max_length = 60, default="Mexico")
 	region = models.IntegerField()
 	telefono = models.CharField(max_length = 20)
 	email = models.CharField(max_length = 60)
-	pagina_web = models.CharField(max_length = 140)
-	logo = models.ImageField(upload_to = "static/logosClientes")
+	pagina_web = models.CharField(blank = True, max_length = 140)
+	logo = models.ImageField(blank = True, upload_to = "static/images/logosClientes")
 	usuario = models.OneToOneField(User, blank = True, null=True, on_delete = models.CASCADE )
-	position = GeopositionField()
+	position = GeopositionField(blank = True)
 
 	def __str__(self):
 		return self.nombre
