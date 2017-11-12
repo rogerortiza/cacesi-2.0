@@ -20,7 +20,7 @@ from dashboard.views import asesorias, DashboardClass, LoginClass, home, team
 from carteras.viewsets import  ClientesViewSet
 from inspecciones.viewsets import ExtintoresViewSet
 from inventario_terceros.viewsets import ExtintoresTercerosViewSet
-from planteles.viewsets import AreasViewSet
+#from planteles.viewsets import AreasViewSet
 
 router = routers.DefaultRouter()
 router.register(r'clientes', ClientesViewSet, base_name="clientes")
@@ -28,7 +28,7 @@ router.register(r'inspecciones_extintores', ExtintoresViewSet, base_name="inspec
 router.register(r'extintores_terceros', ExtintoresTercerosViewSet, base_name="exintores_terceros")
 
 dashboard_router = routers.NestedSimpleRouter(router, r'clientes', lookup='cliente')
-dashboard_router.register(r'areas', AreasViewSet, base_name='areas')
+#dashboard_router.register(r'areas', AreasViewSet, base_name='areas')
 dashboard_router.register(r'extintores_terceros', ExtintoresTercerosViewSet, base_name='exintores_terceros')
 dashboard_router.register(r'inspeccion_extintores', ExtintoresViewSet, base_name='inspeccion_extintores')
 

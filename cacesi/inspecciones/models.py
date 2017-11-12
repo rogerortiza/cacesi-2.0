@@ -2,7 +2,6 @@ from django.db import models
 from django.db.models import Q
 from django.utils import timezone
 from inventario_terceros.models import Extintores
-from planteles.models import Areas
 from plantilla.models  import Empleados
 
 # Create your models here.
@@ -16,10 +15,8 @@ class Asignaciones(models.Model):
 	class Meta:
 		verbose_name='Asignacion'
 		verbose_name_plural='Asignaciones'
-		unique_together = (('area', 'empleado', 'mes', 'año'))
 
 	id = models.AutoField(primary_key = True)
-	area = models.ForeignKey(Areas, on_delete =  models.CASCADE)
 	empleado = models.ForeignKey(Empleados, on_delete =  models.CASCADE)
 	mes = models.CharField(max_length = 10, choices=MESES)
 	año = models.CharField(max_length = 4, default = timezone.now().year)
@@ -39,7 +36,8 @@ class Extintores(models.Model):
 	]
 
 	class Meta:
-		verbose_name_plural='Extintores'
+		verbose_name='Inspeccion a Extintor'
+		verbose_name_plural='Inspecciones a Extintores'
 
 	id = models.AutoField(primary_key = True)
 	empleado = models.ForeignKey(Empleados, on_delete = models.CASCADE)
@@ -142,4 +140,3 @@ class Extintores(models.Model):
 
 	def __str__(self):
 		return str(self.extintor)
-

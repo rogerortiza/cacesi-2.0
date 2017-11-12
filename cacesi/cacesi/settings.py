@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "import_export",
     "carteras.apps.CarterasConfig",
+    "catalogos.apps.CatalogosConfig",
     "inspecciones.apps.InspeccionesConfig",
     "inventario_cacesi.apps.InventarioCacesiConfig",
     "inventario_terceros.apps.InventarioTercerosConfig",

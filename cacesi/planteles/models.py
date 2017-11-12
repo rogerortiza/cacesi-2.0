@@ -1,4 +1,6 @@
 from django.db import models
+
+"""
 from carteras.models import Clientes
 # Create your models here.
 class Areas(models.Model):
@@ -13,3 +15,5 @@ class Areas(models.Model):
 
 	def __str__(self):
 		return self.nombre
+
+	"""

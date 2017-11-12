@@ -3,11 +3,11 @@ from .models import Asignaciones, Extintores
 
 # Register your models here.
 class AsignacionesAdmin(admin.ModelAdmin):
-	list_display = ('id', 'area', 'empleado', 'mes') 
+	list_display = ('id', 'empleado', 'mes')
 
 class ExtintoresAdmin(admin.ModelAdmin):
 	fieldsets = (
-			(None, {'fields' : ('empleado', 'extintor', 'fecha_revision', 'status')}),
+			(None, {'fields' : ('empleado', 'extintor', 'status')}),
 			('Etiqueta', {
 				'fields' : ('etiqueta', 'condicion_etiqueta', 'foto_etiqueta_antes', 'acciones_etiqueta', 'foto_etiqueta_despues', 'arreglo_etiqueta_sitio', 'motivos_etiqueta')}),
 			('Seguro', {
@@ -44,8 +44,7 @@ class ExtintoresAdmin(admin.ModelAdmin):
 		return obj.extintor.area
 
 	def cliente(self, obj):
-		return obj.extintor.area.cliente
+		return obj.extintor.cliente
 
 admin.site.register(Asignaciones, AsignacionesAdmin)
 admin.site.register(Extintores, ExtintoresAdmin)
-
