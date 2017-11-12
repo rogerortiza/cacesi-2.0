@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     "inventario_cacesi.apps.InventarioCacesiConfig",
     "inventario_terceros.apps.InventarioTercerosConfig",
     "plantilla.apps.PlantillaConfig",
-    "planteles.apps.PlantelesConfig",
 ]
 
 MIDDLEWARE = [
