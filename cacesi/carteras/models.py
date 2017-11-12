@@ -85,3 +85,16 @@ class Contactos_Proveedores(models.Model):
 
 	def __str__(self):
 		return self.nombre
+
+class Planos_Clientes(models.Model):
+	class Meta:
+		verbose_name="Plano de Cliente"
+		verbose_name_plural="Planos de Clientes"
+
+	id = models.AutoField(primary_key=True)
+	cliente = models.ForeignKey(Clientes, blank=True)
+	nombre = models.CharField(blank=True, max_length=100)
+	plano = models.FileField(upload_to='static/files/planos', blank=True)
+
+	def __str__(self):
+		return self.nombre
