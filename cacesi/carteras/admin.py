@@ -18,7 +18,7 @@ class PlanosClientesInline(admin.TabularInline):
 class ClientesAdmin(admin.ModelAdmin):
     list_display = ('id', 'nombre', 'email')
     list_display_links = ('nombre',)
-    fields = (('nombre', 'sucursal'), ('razon_social', 'rfc'), ('codigo', 'giro'), ('calle', 'colonia'), ('municipio','estado'), ('pais', 'region'), ('telefono', 'email'), ('pagina_web', 'logo'), 'usuario', 'position')
+    fields = (('nombre', 'sucursal'), ('razon_social', 'rfc'), ('codigo', 'giro'), ('calle', 'colonia'), ('municipio','estado'), ('pais', 'cp'), 'region', ('telefono', 'email'), ('pagina_web', 'logo'), 'usuario', 'position')
     exclude = ('fecha_alta',)
     inlines = [ContactosClientesInline, PlanosClientesInline]
 

@@ -21,6 +21,7 @@ class Clientes(models.Model):
 	colonia = models.CharField(max_length=100)
 	municipio = models.CharField(max_length = 140)
 	estado = models.CharField(max_length = 60)
+	cp = models.CharField(blank=True, max_length=5)
 	pais = models.CharField(max_length = 60, default="Mexico")
 	region = models.IntegerField()
 	telefono = models.CharField(max_length = 20)
