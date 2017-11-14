@@ -52,13 +52,14 @@ class Extintores(models.Model):
 	cliente = models.ForeignKey(Clientes)
 	area = models.ForeignKey(Areas)
 	ubicacion = models.CharField(max_length = 140)
-	no_control = models.CharField(max_length = 140)
+	no_control = models.CharField(max_length = 140, blank=True, unique=True)
 	tipo_extintor = models.CharField(max_length = 140, choices = TIPOS_EXTINTORES)
 	clasificacion = models.CharField(max_length = 140, choices = CLASIFICACION_EXTINTORES)
 	capacidad = models.CharField(max_length = 140, choices = CAPACIDAD)
 	contenido_neto = models.CharField(max_length=100, choices = MEDIDADAS_CONTENIDO)
 	ultima_reca = models.DateField("Ultima Recarga", default = timezone.now)
 	vencimiento = models.DateField()
+	status = models.CharField(max_length=100)
 	foto = models.ImageField(upload_to="static/images/extintores", blank=True)
 
 	def save(self, *args, **kwargs):
