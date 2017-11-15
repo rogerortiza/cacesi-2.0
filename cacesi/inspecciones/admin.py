@@ -7,7 +7,7 @@ class AsignacionesAdmin(admin.ModelAdmin):
 
 class ExtintoresAdmin(admin.ModelAdmin):
 	fieldsets = (
-			(None, {'fields' : ('empleado', 'extintor', 'status')}),
+			(None, {'fields' : ('empleado', 'extintor', 'status', 'fecha_revision')}),
 			('Etiqueta', {
 				'fields' : ('etiqueta', 'condicion_etiqueta', 'foto_etiqueta_antes', 'acciones_etiqueta', 'foto_etiqueta_despues', 'arreglo_etiqueta_sitio', 'motivos_etiqueta')}),
 			('Seguro', {
@@ -39,6 +39,8 @@ class ExtintoresAdmin(admin.ModelAdmin):
 		)
 
 	list_display = ('id', 'extintor', 'cliente', 'area', 'empleado', 'fecha_revision')
+	list_filter = ('extintor__cliente','extintor__area', 'extintor__ubicacion', 'empleado',)
+	search_fields = ('no_control',)
 
 	def area(self, obj):
 		return obj.extintor.area
