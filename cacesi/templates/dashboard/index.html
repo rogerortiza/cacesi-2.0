@@ -47,7 +47,7 @@
               <li><a href="{% url 'dashboard:logout' %}">Salir</a></li>
             </ul>
 
-            <div class=""><a class='dropdown-button' href='#' data-activates='dropdown1'> {{user.clientes.nombre}} <i class="material-icons">new_releases</i></a></div>
+            <div class=""><a class='dropdown-button' href='#' data-activates='dropdown1'> {$ cliente.nombre $} <i class="material-icons">new_releases</i></a></div>
 
           </div>
         </div>
@@ -65,9 +65,9 @@
     </div>
 
     <div class="col s12 m9 l10 offset-m3 offset-l2 white blue-grey-text text-darken-3 min-page ">
-      <inspeccion-extintores ng-if="showPage == 'first'" area="areaSelected" mes = "mesSelected" inspecciones = "inspeccionesTodas" ></inspeccion-extintores>
+      <inspeccion-extintores ng-if="showPage == 'first'" area="areaSelected" mes="mesSelected" inspecciones="inspeccionesTodas" totalextintores="extintoresByCliente.length"></inspeccion-extintores>
       <areas-cliente ng-if="showPage == 'second'" cliente="clienteid" ></areas-cliente>
-      <extintores-cliente ng-if="showPage == 'third'" cliente="clienteid" ></extintores-cliente>
+      <extintores-cliente ng-if="showPage == 'third'" cliente="clienteid" extintores="extintoresByCliente" ></extintores-cliente>
     </div>
   </div>
 </div>

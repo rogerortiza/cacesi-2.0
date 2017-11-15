@@ -8,7 +8,8 @@ angular.module('cacesi')
 			scope : {
 				area : '=',
 				mes : '=',
-				inspecciones : '='
+				inspecciones : '=',
+				totalextintores : '='
 			},
 			controller : ['$scope', function($scope) {
 				$scope.$watch('[area, mes]', function(newValue, oldValue) {
@@ -26,7 +27,7 @@ angular.module('cacesi')
 				$('.materialboxed').materialbox();
 
 				var data4 = [
-    			{"value": 100, "name": "140", "color": "#00BBD6"},
+    			{"value": 100, "name": $scope.totalextintores, "color": "#00BBD6"},
   			]
 
 			  d3plus.viz()
@@ -176,12 +177,11 @@ angular.module('cacesi')
 			templateUrl : '/dashboard/extintores',
 			restrict : 'EA',
 			scope : {
-				cliente : '='
+				cliente : '=',
+				extintores : '='
 			},
-			controller : ['$scope', 'getInfoService', function($scope, getInfoService) {
-				getInfoService.getInfoByIdCliente($scope.cliente, 'extintores_terceros').then(function(data) {
-					$scope.extintoresByCliente = data.data;
-				})
+			controller : ['$scope', function($scope) {
+				$scope.extintoresByCliente = $scope.extintores;
 			}],
 		};
 	})
