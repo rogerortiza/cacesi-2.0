@@ -135,7 +135,7 @@ class Extintores(models.Model):
 	foto_obstruido_despues = models.ImageField(upload_to = "static/images/inspecciones/reportes/despues/obstruido", blank = True)
 	arreglo_obstruido_sitio = models.BooleanField(blank = True)
 	motivos_obstruido = models.TextField(blank = True)
-	observaciones = models.TextField()
+	observaciones = models.TextField(blank=True)
 	foto = models.ImageField(upload_to="static/images/inspecciones/observaciones", blank = True)
 
 	def __str__(self):
