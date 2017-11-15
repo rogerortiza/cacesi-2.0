@@ -8,6 +8,6 @@ class ExtintoresViewSet(viewsets.ModelViewSet):
 
 	def get_queryset(self):
 		if "cliente_pk" in self.kwargs:
-			return self.queryset.filter(extintor__area__cliente_id = self.kwargs['cliente_pk'])
+			return self.queryset.filter(extintor__cliente_id = self.kwargs['cliente_pk'])
 		else:
 			return self.queryset
