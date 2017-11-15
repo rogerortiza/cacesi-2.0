@@ -6,7 +6,10 @@ class ExtintoresTercerosSerializer(serializers.ModelSerializer):
 	foto = serializers.SerializerMethodField('get_foto_url')
 
 	def get_foto_url(self, obj):
-		return '%s' % (obj.foto.url)
+		if obj.foto is None:
+			return "no-foto.png"
+		else:
+			return '%s' % (obj.foto.url)
 
 	class Meta:
 		model = Extintores
