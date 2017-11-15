@@ -143,10 +143,10 @@ angular.module('cacesi')
 					]
 
 					var noStatus = [
-						{"extintores": 100, "anomalia": "En su Lugar"},
-						{"extintores": 200, "anomalia": "No encontrado"},
-						{"extintores": 10, "anomalia": "R. por caducidad"},
-						{"extintores": 450, "anomalia": "R. po falta presion"}
+						{"extintores": 18, "anomalia": "En su Lugar"},
+						{"extintores": 2, "anomalia": "Rem. por daño"},
+						{"extintores": 1, "anomalia": "No Encontrado"},
+						{"extintores": 1, "anomalia": "R. por caducidad"}
 					]
 
 					makeDonutGraph('Areas', 'areas', noAreas);
