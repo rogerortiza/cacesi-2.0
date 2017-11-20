@@ -151,6 +151,7 @@ GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyBCw4m8S-72kHP3xOJyHIz2-GeXdhcKCvM'
 # Django Rest Framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
