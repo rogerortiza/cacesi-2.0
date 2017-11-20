@@ -1,3 +1,8 @@
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
+from allauth.socialaccount.providers.twitter.views import TwitterOAuthAdapter
+from rest_auth.views import LoginView
+from rest_auth.social_serializers import TwitterLoginSerializer
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as login_django
 from django.contrib.auth import logout as logout_django
@@ -47,7 +52,7 @@ class DashboardClass(LoginRequiredMixin, View):
 		else:
 			data = {'noExtintores' : 40}
 			return render( request, 'dashboard/index.html', data)
-		
+
 
 class ExtintoresClass(LoginRequiredMixin, View):
 	login_url = 'dashboard:login'
@@ -59,7 +64,12 @@ class ReportesClass(LoginRequiredMixin, View):
 	def get(self, request, *args, **kwargs):
 		return render( request, 'dashboard/reportes.html', {})
 
+class FacebookLogin(SocialLoginView):
+	adapter_class = FacebookOAuth2Adapter
 
+class TwitterLogin(LoginView):
+	serializer_class = TwitterLoginSerializer
+	adapter_class = TwitterOAuthAdapter
 
 @login_required( login_url = 'dashboard:login' )
 def logout(request):

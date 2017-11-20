@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework_nested import routers
-from dashboard.views import asesorias, DashboardClass, LoginClass, home, team
+from dashboard.views import asesorias, DashboardClass, LoginClass, home, team, FacebookLogin, TwitterLogin
 from carteras.viewsets import  ClientesViewSet
 from inspecciones.viewsets import ExtintoresViewSet
 from inventario_terceros.viewsets import ExtintoresTercerosViewSet
@@ -43,6 +43,10 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^api/', include(dashboard_router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+    url(r'^rest-auth/facebook/$', FacebookLogin.as_view(), name='fb_login'),
+    url(r'^rest-auth/twitter/$', TwitterLogin.as_view(), name='twitter_login'),
     url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
     #url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
 ]

@@ -49,6 +49,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "geoposition",
     "rest_framework",
+    "rest_framework.authtoken",
+    "rest_auth",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.facebook",
+    "allauth.socialaccount.providers.twitter",
+    "rest_auth.registration",
     "import_export",
     "carteras.apps.CarterasConfig",
     "catalogos.apps.CatalogosConfig",
@@ -57,6 +66,8 @@ INSTALLED_APPS = [
     "inventario_terceros.apps.InventarioTercerosConfig",
     "plantilla.apps.PlantillaConfig",
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -153,6 +164,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
