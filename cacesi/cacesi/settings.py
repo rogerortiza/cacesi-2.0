@@ -30,7 +30,7 @@ else:
     DEBUG = True
 
 ALLOWED_HOSTS = [
-    'cacesi-dev.herokuapp.com',
+    'cacesi.herokuapp.com',
     'localhost',
     'localhost:8000'
 ]
