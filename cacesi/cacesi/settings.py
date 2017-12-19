@@ -31,6 +31,7 @@ else:
 
 ALLOWED_HOSTS = [
     'cacesi.herokuapp.com',
+    'cacesi-dev.herokuapp.com',
     'localhost',
     'localhost:8000'
 ]
