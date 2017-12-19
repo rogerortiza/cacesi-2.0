@@ -39,7 +39,7 @@ class ExtintoresAdmin(admin.ModelAdmin):
 		)
 
 	list_display = ('id', 'extintor', 'cliente', 'area', 'empleado', 'fecha_revision')
-	list_filter = ('extintor__cliente','extintor__area', 'extintor__ubicacion', 'empleado',)
+	list_filter = ('extintor__ubicacion', 'empleado',)
 	search_fields = ('no_control',)
 
 	def area(self, obj):

@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils import timezone
-from carteras.models import Clientes
 from catalogos.models import Areas
 
 # Create your models here.
@@ -49,7 +48,6 @@ class Extintores(models.Model):
 		verbose_name_plural='Extintores'
 
 	id = models.AutoField(primary_key = True)
-	cliente = models.ForeignKey(Clientes)
 	area = models.ForeignKey(Areas)
 	ubicacion = models.CharField(max_length = 140)
 	no_control = models.CharField(max_length = 140, blank=True, unique=True)

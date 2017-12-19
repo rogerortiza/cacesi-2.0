@@ -4,8 +4,8 @@ from .models import Extintores
 
 # Register your models here.
 class ExtintoresAdmin(admin.ModelAdmin):
-	list_display = ('id','no_control', 'area', 'ubicacion', 'contenido_neto', 'ultima_reca', )
-	list_filter = ('cliente', 'area','ubicacion')
+	list_display = ('id','no_control', 'ubicacion', 'contenido_neto', 'ultima_reca', )
+	list_filter = ('ubicacion',)
 	search_fields = ('no_control',)
 	exclude = ('vencimiento',)
 

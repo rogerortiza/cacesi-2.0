@@ -24,7 +24,7 @@ class ClientesAdmin(admin.ModelAdmin):
 
 @admin.register(Proveedores)
 class ProveedoresAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nombre', 'giro', 'telefono')
+    list_display = ('id', 'nombre', 'telefono')
     list_display_links = ('nombre',)
     exclude = ('fecha_registro',)
     inlines = [ContactosProveedoresInline,]

@@ -2,7 +2,7 @@ import datetime
 from django.contrib.auth.models import User
 from django.db import models
 from geoposition.fields import GeopositionField
-from catalogos.models import GiroProveedores
+
 
 # Create your models here.
 class Clientes(models.Model):
@@ -42,7 +42,6 @@ class Proveedores(models.Model):
 	id = models.AutoField(primary_key = True)
 	codigo = models.CharField(max_length=100)
 	nombre = models.CharField(max_length=100)
-	giro = models.ForeignKey(GiroProveedores)
 	direccion = models.CharField(blank=True, max_length=100)
 	telefono = models.CharField(blank=True, max_length=12)
 	pagina_web = models.CharField(blank=True, max_length=100)
