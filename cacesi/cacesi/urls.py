@@ -40,6 +40,7 @@ urlpatterns = [
     url(r'^inspecciones/', include('inspecciones.urls')),
     url(r'^team/$', team, name="team" ),
     url(r'^admin/', admin.site.urls),
+    url(r'^chaining/', include('smart_selects.urls')),
     url(r'^api/', include(router.urls)),
     url(r'^api/', include(dashboard_router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),

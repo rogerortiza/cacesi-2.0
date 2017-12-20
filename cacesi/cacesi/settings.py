@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "smart_selects",
     "geoposition",
     "rest_framework",
     "rest_framework.authtoken",
@@ -68,6 +69,7 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
+JQUERY_URL = False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

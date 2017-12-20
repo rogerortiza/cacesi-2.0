@@ -14,7 +14,7 @@ class Areas(models.Model):
     responsable = models.CharField(blank=True, max_length=100)
 
     def __str__(self):
-        return self.nombre+" - "+self.cliente.nombre
+        return self.nombre
 
 class CategoriaProductos(models.Model):
     class Meta:

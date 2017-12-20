@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from smart_selects.db_fields import ChainedForeignKey
 from catalogos.models import Areas
+from carteras.models import Clientes
 
 # Create your models here.
 class Extintores(models.Model):
@@ -48,7 +50,14 @@ class Extintores(models.Model):
 		verbose_name_plural='Extintores'
 
 	id = models.AutoField(primary_key = True)
-	area = models.ForeignKey(Areas)
+	cliente = models.ForeignKey(Clientes)
+	area = ChainedForeignKey(
+		Areas,
+		chained_field="cliente",
+        chained_model_field="cliente",
+        show_all=False,
+        auto_choose=True,
+        sort=True)
 	ubicacion = models.CharField(max_length = 140)
 	no_control = models.CharField(max_length = 140, blank=True, unique=True)
 	tipo_extintor = models.CharField(max_length = 140, choices = TIPOS_EXTINTORES)
